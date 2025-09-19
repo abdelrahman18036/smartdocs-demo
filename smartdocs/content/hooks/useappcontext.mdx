@@ -36,7 +36,7 @@ const { state, addNotification } = useAppContext()
 
 ### Usage 2
 
-**File:** `src\component\DynamicPagess.tsx` (line 17)
+**File:** `src\assets\DynamicPages.tsx` (line 17)
 
 **Context:** Used in `navigate` function
 
@@ -48,6 +48,18 @@ const { state, addNotification } = useAppContext()
 
 ### Usage 3
 
+**File:** `src\component\DynamicPagess.tsx` (line 17)
+
+**Context:** Used in `navigate` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 4
+
 **File:** `src\component\Navigation.tsx` (line 14)
 
 **Context:** Used in `Navigation` function
@@ -58,7 +70,7 @@ const { state, toggleTheme, logout, addNotification } = useAppContext()
 
 **Destructured variables:** `state`, `toggleTheme`, `logout`, `addNotification`
 
-### Usage 4
+### Usage 5
 
 **File:** `src\component\Notifications.tsx` (line 11)
 
@@ -69,18 +81,6 @@ const { state, removeNotification } = useAppContext()
 ```
 
 **Destructured variables:** `state`, `removeNotification`
-
-### Usage 5
-
-**File:** `src\assets\DynamicPages.tsx` (line 17)
-
-**Context:** Used in `navigate` function
-
-```typescript
-const { state, addNotification } = useAppContext()
-```
-
-**Destructured variables:** `state`, `addNotification`
 
 ### Usage 6
 
@@ -155,13 +155,13 @@ const { state, addNotification } = useAppContext()
 ### Usage 2
 
 ```typescript
-const { state, toggleTheme, logout, addNotification } = useAppContext()
+const { state, toggleTheme, addNotification, setUser } = useAppContext()
 ```
 
 ### Usage 3
 
 ```typescript
-const { state, removeNotification } = useAppContext()
+const { state, toggleTheme, logout, addNotification } = useAppContext()
 ```
 
 ## Source
