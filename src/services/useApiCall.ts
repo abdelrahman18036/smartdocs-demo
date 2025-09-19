@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 interface ApiState<T> {
   data: T | null
@@ -29,7 +29,7 @@ export function useApiCall<T = unknown>(
     error: null
   })
 
-  const execute = async (requestOptions?: RequestInit) => {
+  const execute = useCallback(async (requestOptions?: RequestInit) => {
     setState(prev => ({ ...prev, loading: true, error: null }))
 
     try {
@@ -70,7 +70,7 @@ export function useApiCall<T = unknown>(
 
       throw errorObj
     }
-  }
+  }, [url, options])
 
   // Execute immediately if specified
   useEffect(() => {

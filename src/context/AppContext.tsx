@@ -1,5 +1,6 @@
-import { createContext, useContext, useReducer, type ReactNode } from 'react'
+import { useReducer, type ReactNode } from 'react'
 import { type AppState, type AppAction, type AppContextType } from './types'
+import { AppContext } from './context'
 
 // Initial state
 const initialState: AppState = {
@@ -44,8 +45,6 @@ function appReducer(state: AppState, action: AppAction): AppState {
   }
 }
 
-// Create context
-const AppContext = createContext<AppContextType | undefined>(undefined)
 
 // Provider props
 interface AppProviderProps {
@@ -105,18 +104,4 @@ export function AppProvider({ children }: AppProviderProps) {
       {children}
     </AppContext.Provider>
   )
-}
-
-/**
- * Custom hook to use the App Context
- * 
- * @returns AppContextType - The app context value with state and actions
- * @throws Error if used outside of AppProvider
- */
-export function useAppContext(): AppContextType {
-  const context = useContext(AppContext)
-  if (context === undefined) {
-    throw new Error('useAppContext must be used within an AppProvider')
-  }
-  return context
 }

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { AppProvider, useAppContext } from './context/AppContext'
+import { AppProvider } from './context/AppContext'
+import { useAppContext } from './context/useAppContext'
 import { Navigation } from './component/Navigation'
 import { Notifications } from './component/Notifications'
 import { HomePage } from './pages/HomePage'

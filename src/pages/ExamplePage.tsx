@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useAppContext } from '../context/AppContext'
+import { useAppContext } from '../context/useAppContext'
 import { ButtonComponent } from '../component/ButtonComponent'
 import { DialogModal } from '../component/DialogModal'
 import { CardWidget } from '../component/CardWidget'
