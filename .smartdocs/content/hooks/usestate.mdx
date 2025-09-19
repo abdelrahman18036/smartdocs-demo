@@ -1,0 +1,245 @@
+---
+title: useState
+slug: /hooks/usestate
+---
+
+# useState
+
+Returns a stateful value and a function to update it
+
+## Hook Information
+
+**Category:** state
+
+**Type:** React Built-in Hook
+
+
+## Hook Usage in Codebase
+
+Found **12 usage(s)** across your codebase:
+
+### Usage 1
+
+**File:** `src\pages\ContactPage.tsx` (line 17)
+
+**Context:** Used in `ContactPage` function
+
+```typescript
+const [formData, setFormData] = useState({
+```
+
+**Destructured variables:** `formData`, `setFormData`
+
+**Parameters used:** `{name: ..., email: ..., company: ..., subject: ..., message: ..., newsletter: ...}`
+
+**Default values:**
+
+- `name`: `...`
+- `email`: `...`
+- `company`: `...`
+- `subject`: `...`
+- `message`: `...`
+- `newsletter`: `...`
+
+### Usage 2
+
+**File:** `src\pages\ContactPage.tsx` (line 25)
+
+**Context:** Used in `ContactPage` function
+
+```typescript
+const [isSubmitting, setIsSubmitting] = useState(false)
+```
+
+**Destructured variables:** `isSubmitting`, `setIsSubmitting`
+
+**Parameters used:** `{BooleanLiteral}`
+
+**Default values:**
+
+- `initialState`: `{BooleanLiteral}`
+
+### Usage 3
+
+**File:** `src\pages\ExamplePage.tsx` (line 20)
+
+**Context:** Used in `ExamplePage` function
+
+```typescript
+const [showModal, setShowModal] = useState(false)
+```
+
+**Destructured variables:** `showModal`, `setShowModal`
+
+**Parameters used:** `{BooleanLiteral}`
+
+**Default values:**
+
+- `initialState`: `{BooleanLiteral}`
+
+### Usage 4
+
+**File:** `src\pages\ExamplePage.tsx` (line 22)
+
+**Context:** Used in `ExamplePage` function
+
+```typescript
+const [email, setEmail] = useState('')
+```
+
+**Destructured variables:** `email`, `setEmail`
+
+**Parameters used:** `{StringLiteral}`
+
+**Default values:**
+
+- `initialState`: `{StringLiteral}`
+
+### Usage 5
+
+**File:** `src\pages\ExamplePage.tsx` (line 23)
+
+**Context:** Used in `ExamplePage` function
+
+```typescript
+const [name, setName] = useState('')
+```
+
+**Destructured variables:** `name`, `setName`
+
+**Parameters used:** `{StringLiteral}`
+
+**Default values:**
+
+- `initialState`: `{StringLiteral}`
+
+### Usage 6
+
+**File:** `src\pages\HomePage.tsx` (line 16)
+
+**Context:** Used in `HomePage` function
+
+```typescript
+const [showWelcomeModal, setShowWelcomeModal] = useState(false)
+```
+
+**Destructured variables:** `showWelcomeModal`, `setShowWelcomeModal`
+
+**Parameters used:** `{BooleanLiteral}`
+
+**Default values:**
+
+- `initialState`: `{BooleanLiteral}`
+
+### Usage 7
+
+**File:** `src\pages\HomePage.tsx` (line 17)
+
+**Context:** Used in `HomePage` function
+
+```typescript
+const [userCount, setUserCount] = useState(1250)
+```
+
+**Destructured variables:** `userCount`, `setUserCount`
+
+**Parameters used:** `{NumericLiteral}`
+
+**Default values:**
+
+- `initialState`: `{NumericLiteral}`
+
+### Usage 8
+
+**File:** `src\services\useApiCall.ts` (line 32)
+
+**Context:** Used in `useApiCall` function
+
+```typescript
+const [data, setData] = useState<T | null>(null);
+```
+
+**Destructured variables:** `data`, `setData`
+
+**Parameters used:** `{NullLiteral}`
+
+**Default values:**
+
+- `initialState`: `{NullLiteral}`
+
+### Usage 9
+
+**File:** `src\services\useApiCall.ts` (line 33)
+
+**Context:** Used in `useApiCall` function
+
+```typescript
+const [loading, setLoading] = useState(true);
+```
+
+**Destructured variables:** `loading`, `setLoading`
+
+**Parameters used:** `{BooleanLiteral}`
+
+**Default values:**
+
+- `initialState`: `{BooleanLiteral}`
+
+### Usage 10
+
+**File:** `src\services\useApiCall.ts` (line 34)
+
+**Context:** Used in `useApiCall` function
+
+```typescript
+const [error, setError] = useState<Error | null>(null);
+```
+
+**Destructured variables:** `error`, `setError`
+
+**Parameters used:** `{NullLiteral}`
+
+**Default values:**
+
+- `initialState`: `{NullLiteral}`
+
+### Usage 11
+
+**File:** `src\utils\useAppStorage.ts` (line 21)
+
+**Context:** Used in `useAppStorage` function
+
+```typescript
+const [storedValue, setStoredValue] = useState<T>(() => {
+```
+
+**Destructured variables:** `storedValue`, `setStoredValue`
+
+**Parameters used:** `() => {...}`
+
+**Default values:**
+
+- `callback`: `function`
+
+### Usage 12
+
+**File:** `src\utils\useFormValidator.ts` (line 18)
+
+**Context:** Used in `useFormValidator` function
+
+```typescript
+const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
+```
+
+**Destructured variables:** `errors`, `setErrors`
+
+**Parameters used:** `{}`
+
+**Default values:**
+
+- `initialState`: `{}`
+
+
+
+## Source
+`React Built-in`

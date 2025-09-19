@@ -1,0 +1,86 @@
+---
+title: useApiCall
+slug: /hooks/useapicall
+---
+
+# useApiCall
+
+Custom hook for making API calls with loading and error states
+
+## Hook Information
+
+**Category:** custom
+
+**Type:** Custom Hook
+
+
+## Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `url` | `string` | Yes |  |
+| `options` | `RequestInit` | No |  |
+
+
+## Return Type
+
+**Type:** `unknown`
+
+## Hook Usage in Codebase
+
+Found **2 usage(s)** across your codebase:
+
+### Usage 1
+
+**File:** `src\component\ButtonComponent.tsx` (line 41)
+
+**Context:** Used in `ButtonComponent` function
+
+```typescript
+const { data: buttonData } = useApiCall('/api/button-config');
+```
+
+**Destructured variables:** `data`
+
+**Parameters used:** `{StringLiteral}`
+
+**Default values:**
+
+- `initialState`: `{StringLiteral}`
+
+### Usage 2
+
+**File:** `src\pages\ExamplePage.tsx` (line 26)
+
+**Context:** Used in `ExamplePage` function
+
+```typescript
+const { data: userData, loading, error } = useApiCall('/api/user-profile')
+```
+
+**Destructured variables:** `data`, `loading`, `error`
+
+**Parameters used:** `{StringLiteral}`
+
+**Default values:**
+
+- `initialState`: `{StringLiteral}`
+
+
+
+## Real Usage Examples
+
+### Usage 1
+
+```typescript
+const { data: buttonData } = useApiCall('/api/button-config');
+```
+
+### Usage 2
+
+```typescript
+const { data: userData, loading, error } = useApiCall('/api/user-profile')
+```
+
+## Source
+`src\services\useApiCall.ts`

@@ -1,0 +1,61 @@
+---
+title: Button
+slug: /components/button
+---
+
+# Button
+
+Button component for user interactions
+
+## Real Usage Examples
+
+### Usage 1
+
+```tsx
+<Button
+variant="secondary"
+size="small"
+className="w-full"
+onClick={() => handleLearnMore(tech.name)}
+>
+Learn More
+</Button>
+```
+
+### Usage 2
+
+```tsx
+<Button
+variant="primary"
+size="small"
+onClick={() => handleLearnMore(feature.title)}
+>
+Explore
+</Button>
+```
+
+### Usage 3
+
+```tsx
+<Button
+variant="success"
+onClick={() => window.location.href = '/'}
+>
+Back to Home
+</Button>
+```
+
+## Props
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `ReactNode` | Yes | - | The content to display inside the button |
+| `variant` | `enum` | No | `primary` | The visual style variant of the button |
+| `size` | `enum` | No | `medium` | The size of the button |
+| `disabled` | `boolean` | No | `false` | Whether the button is disabled |
+| `onClick` | `() => void` | No | - | Click handler function |
+| `className` | `string` | No | `{"value":""}` | Additional CSS class names |
+
+
+## Source
+`src\component\Button.tsx`

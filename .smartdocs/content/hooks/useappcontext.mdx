@@ -1,0 +1,168 @@
+---
+title: useAppContext
+slug: /hooks/useappcontext
+---
+
+# useAppContext
+
+Custom hook to use the App Context
+
+## Hook Information
+
+**Category:** custom
+
+**Type:** Custom Hook
+
+
+## Return Type
+
+**Type:** `AppContextType`
+
+## Hook Usage in Codebase
+
+Found **10 usage(s)** across your codebase:
+
+### Usage 1
+
+**File:** `src\Test.tsx` (line 14)
+
+**Context:** Used in `TestPage` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 2
+
+**File:** `src\component\DynamicPagess.tsx` (line 17)
+
+**Context:** Used in `navigate` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 3
+
+**File:** `src\component\Navigation.tsx` (line 14)
+
+**Context:** Used in `Navigation` function
+
+```typescript
+const { state, toggleTheme, logout, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `toggleTheme`, `logout`, `addNotification`
+
+### Usage 4
+
+**File:** `src\component\Notifications.tsx` (line 11)
+
+**Context:** Used in `Notifications` function
+
+```typescript
+const { state, removeNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `removeNotification`
+
+### Usage 5
+
+**File:** `src\assets\DynamicPages.tsx` (line 17)
+
+**Context:** Used in `navigate` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 6
+
+**File:** `src\pages\AboutPage.tsx` (line 14)
+
+**Context:** Used in `AboutPage` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 7
+
+**File:** `src\pages\ContactPage.tsx` (line 16)
+
+**Context:** Used in `ContactPage` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 8
+
+**File:** `src\pages\DynamicPage.tsx` (line 17)
+
+**Context:** Used in `navigate` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 9
+
+**File:** `src\pages\ExamplePage.tsx` (line 19)
+
+**Context:** Used in `ExamplePage` function
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+**Destructured variables:** `state`, `addNotification`
+
+### Usage 10
+
+**File:** `src\pages\HomePage.tsx` (line 15)
+
+**Context:** Used in `HomePage` function
+
+```typescript
+const { state, toggleTheme, addNotification, setUser } = useAppContext()
+```
+
+**Destructured variables:** `state`, `toggleTheme`, `addNotification`, `setUser`
+
+
+
+## Real Usage Examples
+
+### Usage 1
+
+```typescript
+const { state, addNotification } = useAppContext()
+```
+
+### Usage 2
+
+```typescript
+const { state, toggleTheme, logout, addNotification } = useAppContext()
+```
+
+### Usage 3
+
+```typescript
+const { state, removeNotification } = useAppContext()
+```
+
+## Source
+`src\context\AppContext.tsx`
