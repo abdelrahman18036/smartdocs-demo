@@ -4,6 +4,7 @@ import path from 'path'
 import Link from 'next/link'
 import Pagination, { usePagination } from '../../components/Pagination'
 import { TypeOverrideControl } from '../../components/TypeOverrideControl'
+import matter from 'gray-matter'
 
 // Helper function to extract components used in a page
 function extractUsedComponents(pageContent: string, allComponents: any[]) {
@@ -162,11 +163,44 @@ function extractUsedComponents(pageContent: string, allComponents: any[]) {
 interface PagePageProps {
   component: any
   usedComponents: Array<{name: string, type: string, count: number, firstUsage: string}>
+  mdxContent?: {
+    content: string
+    frontmatter: any
+  }
 }
 
-export default function PagePage({ component, usedComponents }: PagePageProps) {
-  if (!component) {
+export default function PagePage({ component, usedComponents, mdxContent }: PagePageProps) {
+  if (!component && !mdxContent) {
     return <div>Page not found</div>
+  }
+  
+  // If we have MDX content, prioritize that
+  if (mdxContent) {
+    return (
+      <div className="space-y-8">
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold">{mdxContent.frontmatter.title || component?.displayName}</h1>
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            <div className="whitespace-pre-wrap">{mdxContent.content}</div>
+          </div>
+        </div>
+        
+        {/* Show component documentation if available */}
+        {component && (
+          <div className="border-t pt-8">
+            <h2 className="text-2xl font-semibold mb-4">Component Documentation</h2>
+            <div className="space-y-2">
+              <p className="text-lg text-muted-foreground">
+                {component.description || 'No description available'}
+              </p>
+              <p className="font-mono text-sm bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">
+                📄 {component.filePath}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    )
   }
   
   // Helper function to get component type color
@@ -519,20 +553,49 @@ export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const fs = await import('fs')
     const path = await import('path')
-    const searchJsonPath = path.join(process.cwd(), 'content', 'search.json')
     
-    const searchData = JSON.parse(fs.readFileSync(searchJsonPath, 'utf-8'))
+    // Get paths from search.json components
+    try {
+      const searchJsonPath = path.join(process.cwd(), 'content', 'search.json')
+      const searchData = JSON.parse(fs.readFileSync(searchJsonPath, 'utf-8'))
+      
+      const componentPaths = searchData.components
+        .filter((comp: any) => comp.type === 'page')
+        .map((comp: any) => ({
+          params: { slug: comp.displayName.toLowerCase() }
+        }))
+      
+      paths.push(...componentPaths)
+    } catch (error) {
+      console.warn('Could not read components data for static paths:', error)
+    }
     
-    paths = searchData.components
-      .filter((comp: any) => comp.type === 'page')
-      .map((comp: any) => ({
-        params: { slug: comp.displayName.toLowerCase() }
-      }))
+    // Get paths from MDX files in content/pages
+    try {
+      const pagesDir = path.join(process.cwd(), 'content', 'pages')
+      if (fs.existsSync(pagesDir)) {
+        const mdxFiles = fs.readdirSync(pagesDir)
+          .filter(file => file.endsWith('.mdx'))
+          .map(file => ({
+            params: { slug: file.replace('.mdx', '') }
+          }))
+        
+        // Merge with existing paths, avoiding duplicates
+        mdxFiles.forEach(mdxPath => {
+          if (!paths.some(p => p.params.slug === mdxPath.params.slug)) {
+            paths.push(mdxPath)
+          }
+        })
+      }
+    } catch (error) {
+      console.warn('Could not read MDX files for static paths:', error)
+    }
 
   } catch (error) {
-    console.warn('Could not read components data for static paths:', error)
-    paths = []
+    console.warn('Error generating static paths:', error)
   }
+
+  console.log('📄 [PATHS DEBUG] Generated paths:', paths.map(p => p.params.slug))
 
   return {
     paths,
@@ -548,6 +611,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   
   let component: any = null
   let usedComponents: Array<{name: string, type: string, count: number, firstUsage: string}> = []
+  let mdxContent: any = null
   
   try {
     const fs = await import('fs')
@@ -576,75 +640,99 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       (comp: any) => comp.displayName.toLowerCase() === params?.slug && comp.type === 'page'
     )
 
-    if (!component) {
-      console.error('❌ [PAGE DEBUG] Component not found for slug:', params?.slug)
+    // Try to load MDX content first
+    try {
+      const mdxPath = path.join(process.cwd(), 'content', 'pages', `${params?.slug}.mdx`)
+      console.log('🔍 [PAGE DEBUG] Trying to load MDX from:', mdxPath)
+      
+      if (fs.existsSync(mdxPath)) {
+        const mdxRaw = fs.readFileSync(mdxPath, 'utf-8')
+        const { data: frontmatter, content } = matter(mdxRaw)
+        mdxContent = { frontmatter, content }
+        console.log('✅ [PAGE DEBUG] Loaded MDX content for:', params?.slug)
+      } else {
+        console.log('⚠️ [PAGE DEBUG] No MDX file found at:', mdxPath)
+      }
+    } catch (mdxError) {
+      console.log('⚠️ [PAGE DEBUG] Error loading MDX:', mdxError)
+    }
+
+    // If we have neither component nor MDX content, return not found
+    if (!component && !mdxContent) {
+      console.error('❌ [PAGE DEBUG] Neither component nor MDX content found for slug:', params?.slug)
       return {
         notFound: true
       }
     }
 
-    console.log('✅ [PAGE DEBUG] Found component:', component.displayName)
-    console.log('📁 [PAGE DEBUG] Component file path:', component.filePath)
-    console.log('🔧 [PAGE DEBUG] Component has usedComponents?', !!component.usedComponents)
-    console.log('🔧 [PAGE DEBUG] usedComponents type:', typeof component.usedComponents)
-    console.log('🔧 [PAGE DEBUG] usedComponents length:', component.usedComponents?.length || 'N/A')
+    // If we have a component, extract used components
+    if (component) {
+      // Use pre-generated component usage data if available (preferred for production)
+      if (component.usedComponents && Array.isArray(component.usedComponents)) {
+        usedComponents = component.usedComponents
+        console.log(`✅ [PAGE DEBUG] Using pre-generated component usage data for ${component.displayName} (${usedComponents.length} components)`)
+        usedComponents.forEach((comp, index) => {
+          console.log(`  ${index + 1}. ${comp.name} (${comp.type}): ${comp.count} usages`)
+        })
+      } else {
+        console.log('⚠️ [PAGE DEBUG] No pre-generated component usage data found, trying runtime extraction...')
 
-    // Use pre-generated component usage data if available (preferred for production)
-    if (component.usedComponents && Array.isArray(component.usedComponents)) {
-      usedComponents = component.usedComponents
-      console.log(`✅ [PAGE DEBUG] Using pre-generated component usage data for ${component.displayName} (${usedComponents.length} components)`)
-      usedComponents.forEach((comp, index) => {
-        console.log(`  ${index + 1}. ${comp.name} (${comp.type}): ${comp.count} usages`)
-      })
-    } else {
-      console.log('⚠️ [PAGE DEBUG] No pre-generated component usage data found, trying runtime extraction...')
-      
-      // Fallback: Try to extract at runtime (development only)
-      try {
-        if (component.filePath) {
-          let pageContent = ''
-          
-          // Only try a few likely paths to avoid excessive file system operations
-          const possiblePaths = [
-            path.resolve(process.cwd(), '..', component.filePath),
-            path.resolve(process.cwd(), '..', '..', component.filePath),
-            path.resolve(process.cwd(), component.filePath),
-            component.filePath
-          ]
-          
-          console.log('🔍 [PAGE DEBUG] Trying file paths:', possiblePaths)
-          
-          for (const filePath of possiblePaths) {
-            try {
-              console.log('🔍 [PAGE DEBUG] Checking path:', filePath)
-              if (fs.existsSync(filePath)) {
-                pageContent = fs.readFileSync(filePath, 'utf-8')
-                console.log(`✅ [PAGE DEBUG] Found file at: ${filePath} (${pageContent.length} chars)`)
-                break
-              } else {
-                console.log('❌ [PAGE DEBUG] File not found at:', filePath)
+        // Fallback: Try to extract at runtime (development only)
+        try {
+          if (component.filePath) {
+            let pageContent = ''
+            
+            // Only try a few likely paths to avoid excessive file system operations
+            const possiblePaths = [
+              path.resolve(process.cwd(), '..', component.filePath),
+              path.resolve(process.cwd(), '..', '..', component.filePath),
+              path.resolve(process.cwd(), component.filePath),
+              component.filePath
+            ]
+            
+            console.log('🔍 [PAGE DEBUG] Trying file paths:', possiblePaths)
+            
+            for (const filePath of possiblePaths) {
+              try {
+                console.log('🔍 [PAGE DEBUG] Checking path:', filePath)
+                if (fs.existsSync(filePath)) {
+                  pageContent = fs.readFileSync(filePath, 'utf-8')
+                  console.log(`✅ [PAGE DEBUG] Found file at: ${filePath} (${pageContent.length} chars)`)
+                  break
+                } else {
+                  console.log('❌ [PAGE DEBUG] File not found at:', filePath)
+                }
+              } catch (e) {
+                console.log('❌ [PAGE DEBUG] Error accessing file:', filePath, e)
               }
-            } catch (e) {
-              console.log('❌ [PAGE DEBUG] Error accessing file:', filePath, e)
             }
-          }
-          
-          if (pageContent) {
-            usedComponents = extractUsedComponents(pageContent, searchData.components)
-            console.log(`✅ [PAGE DEBUG] Extracted component usage at runtime for ${component.displayName} (${usedComponents.length} components)`)
-            usedComponents.forEach((comp, index) => {
-              console.log(`  ${index + 1}. ${comp.name} (${comp.type}): ${comp.count} usages`)
-            })
+            
+            if (pageContent) {
+              usedComponents = extractUsedComponents(pageContent, searchData.components)
+              console.log(`✅ [PAGE DEBUG] Extracted component usage at runtime for ${component.displayName} (${usedComponents.length} components)`)
+              usedComponents.forEach((comp, index) => {
+                console.log(`  ${index + 1}. ${comp.name} (${comp.type}): ${comp.count} usages`)
+              })
+            } else {
+              console.warn(`⚠️ [PAGE DEBUG] No component usage data available for ${component.displayName} (source file not found)`)
+            }
           } else {
-            console.warn(`⚠️ [PAGE DEBUG] No component usage data available for ${component.displayName} (source file not found)`)
+            console.warn(`⚠️ [PAGE DEBUG] No filePath provided for component ${component.displayName}`)
           }
-        } else {
-          console.warn(`⚠️ [PAGE DEBUG] No filePath provided for component ${component.displayName}`)
+        } catch (error) {
+          console.warn('⚠️ [PAGE DEBUG] Could not extract used components (this is normal on Vercel):', error instanceof Error ? error.message : String(error))
         }
-      } catch (error) {
-        console.warn('⚠️ [PAGE DEBUG] Could not extract used components (this is normal on Vercel):', error instanceof Error ? error.message : String(error))
       }
     }
+    }
+
+    // If we have a component, extract used components
+    if (component) {
+      console.log('✅ [PAGE DEBUG] Found component:', component.displayName)
+      console.log('📁 [PAGE DEBUG] Component file path:', component.filePath)
+      console.log('🔧 [PAGE DEBUG] Component has usedComponents?', !!component.usedComponents)
+      console.log('🔧 [PAGE DEBUG] usedComponents type:', typeof component.usedComponents)
+      console.log('🔧 [PAGE DEBUG] usedComponents length:', component.usedComponents?.length || 'N/A')
 
     console.log('🎯 [PAGE DEBUG] Final result - usedComponents:', usedComponents.length)
     console.log('📤 [PAGE DEBUG] Returning props with component:', component.displayName, 'and', usedComponents.length, 'used components')
@@ -652,7 +740,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
       props: {
         component,
-        usedComponents
+        usedComponents,
+        mdxContent
       }
     }
   } catch (error) {

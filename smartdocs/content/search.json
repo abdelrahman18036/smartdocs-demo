@@ -41,6 +41,169 @@
       "realUsageExamples": []
     },
     {
+      "displayName": "AppProvider",
+      "filePath": "src\\context\\AppContext.tsx",
+      "description": "App Context Provider\n\nProvides global state management for the entire application using React Context and useReducer.\nManages theme, user authentication, notifications, and loading states.",
+      "type": "component",
+      "props": [],
+      "jsdoc": {
+        "description": "App Context Provider\n\nProvides global state management for the entire application using React Context and useReducer.\nManages theme, user authentication, notifications, and loading states."
+      },
+      "examples": [],
+      "realUsageExamples": [
+        "<AppProvider>\n<Router>\n<div className=\"min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300\">\n<Navigation />\n<Notifications />\n<main>\n<Routes>\n<Route path=\"/\" element={<HomePage />} />\n<Route path=\"/about\" element={<AboutPage />} />\n<Route path=\"/contact\" element={<ContactPage />} />\n<Route path=\"/examples\" element={<ExamplePage />} />\n{/* Dynamic routes with ID parameters */}\n<Route path=\"/pages/:id\" element={<DynamicPage />} />\n<Route path=\"/articles/:id\" element={<DynamicPagess />} />\n<Route path=\"/products/:id\" element={<DynamicPages />} />\n<Route path=\"/test\" element={<TestPage />} />\n{/* Catch-all route for 404 */}\n<Route path=\"*\" element={<NotFoundPage />} />\n</Routes>\n</main>\n</div>\n</Router>\n</AppProvider>"
+      ]
+    },
+    {
+      "displayName": "useAppContext",
+      "filePath": "src\\context\\AppContext.tsx",
+      "description": "Custom hook to use the App Context",
+      "type": "hook",
+      "props": [],
+      "jsdoc": {
+        "description": "Custom hook to use the App Context"
+      },
+      "examples": [],
+      "realUsageExamples": [
+        "const { state, addNotification } = useAppContext()",
+        "const { state, toggleTheme, addNotification, setUser } = useAppContext()",
+        "const { state, toggleTheme, logout, addNotification } = useAppContext()"
+      ],
+      "hookSignature": "",
+      "parameters": [],
+      "returnType": {
+        "type": "AppContextType"
+      },
+      "hookUsages": [
+        {
+          "file": "src\\Test.tsx",
+          "line": 14,
+          "code": "const { state, addNotification } = useAppContext()",
+          "context": "TestPage",
+          "destructuring": [
+            "state",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\assets\\DynamicPages.tsx",
+          "line": 17,
+          "code": "const { state, addNotification } = useAppContext()",
+          "context": "navigate",
+          "destructuring": [
+            "state",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\component\\DynamicPagess.tsx",
+          "line": 17,
+          "code": "const { state, addNotification } = useAppContext()",
+          "context": "navigate",
+          "destructuring": [
+            "state",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\component\\Navigation.tsx",
+          "line": 14,
+          "code": "const { state, toggleTheme, logout, addNotification } = useAppContext()",
+          "context": "Navigation",
+          "destructuring": [
+            "state",
+            "toggleTheme",
+            "logout",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\component\\Notifications.tsx",
+          "line": 11,
+          "code": "const { state, removeNotification } = useAppContext()",
+          "context": "Notifications",
+          "destructuring": [
+            "state",
+            "removeNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\pages\\AboutPage.tsx",
+          "line": 14,
+          "code": "const { state, addNotification } = useAppContext()",
+          "context": "AboutPage",
+          "destructuring": [
+            "state",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\pages\\ContactPage.tsx",
+          "line": 16,
+          "code": "const { state, addNotification } = useAppContext()",
+          "context": "ContactPage",
+          "destructuring": [
+            "state",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\pages\\DynamicPage.tsx",
+          "line": 17,
+          "code": "const { state, addNotification } = useAppContext()",
+          "context": "navigate",
+          "destructuring": [
+            "state",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\pages\\ExamplePage.tsx",
+          "line": 19,
+          "code": "const { state, addNotification } = useAppContext()",
+          "context": "ExamplePage",
+          "destructuring": [
+            "state",
+            "addNotification"
+          ],
+          "parameters": [],
+          "defaults": {}
+        },
+        {
+          "file": "src\\pages\\HomePage.tsx",
+          "line": 15,
+          "code": "const { state, toggleTheme, addNotification, setUser } = useAppContext()",
+          "context": "HomePage",
+          "destructuring": [
+            "state",
+            "toggleTheme",
+            "addNotification",
+            "setUser"
+          ],
+          "parameters": [],
+          "defaults": {}
+        }
+      ],
+      "isBuiltInHook": false,
+      "hookCategory": "custom"
+    },
+    {
       "displayName": "Badge",
       "filePath": "src\\component\\Badge.tsx",
       "description": "Badge Component\n\nA versatile badge component for displaying labels, status indicators, and tags.\nSupports multiple variants and sizes with customizable styling.",
@@ -411,169 +574,6 @@
       ]
     },
     {
-      "displayName": "AppProvider",
-      "filePath": "src\\context\\AppContext.tsx",
-      "description": "App Context Provider\n\nProvides global state management for the entire application using React Context and useReducer.\nManages theme, user authentication, notifications, and loading states.",
-      "type": "component",
-      "props": [],
-      "jsdoc": {
-        "description": "App Context Provider\n\nProvides global state management for the entire application using React Context and useReducer.\nManages theme, user authentication, notifications, and loading states."
-      },
-      "examples": [],
-      "realUsageExamples": [
-        "<AppProvider>\n<Router>\n<div className=\"min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300\">\n<Navigation />\n<Notifications />\n<main>\n<Routes>\n<Route path=\"/\" element={<HomePage />} />\n<Route path=\"/about\" element={<AboutPage />} />\n<Route path=\"/contact\" element={<ContactPage />} />\n<Route path=\"/examples\" element={<ExamplePage />} />\n{/* Dynamic routes with ID parameters */}\n<Route path=\"/pages/:id\" element={<DynamicPage />} />\n<Route path=\"/articles/:id\" element={<DynamicPagess />} />\n<Route path=\"/products/:id\" element={<DynamicPages />} />\n<Route path=\"/test\" element={<TestPage />} />\n{/* Catch-all route for 404 */}\n<Route path=\"*\" element={<NotFoundPage />} />\n</Routes>\n</main>\n</div>\n</Router>\n</AppProvider>"
-      ]
-    },
-    {
-      "displayName": "useAppContext",
-      "filePath": "src\\context\\AppContext.tsx",
-      "description": "Custom hook to use the App Context",
-      "type": "hook",
-      "props": [],
-      "jsdoc": {
-        "description": "Custom hook to use the App Context"
-      },
-      "examples": [],
-      "realUsageExamples": [
-        "const { state, addNotification } = useAppContext()",
-        "const { state, toggleTheme, logout, addNotification } = useAppContext()",
-        "const { state, removeNotification } = useAppContext()"
-      ],
-      "hookSignature": "",
-      "parameters": [],
-      "returnType": {
-        "type": "AppContextType"
-      },
-      "hookUsages": [
-        {
-          "file": "src\\Test.tsx",
-          "line": 14,
-          "code": "const { state, addNotification } = useAppContext()",
-          "context": "TestPage",
-          "destructuring": [
-            "state",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\assets\\DynamicPages.tsx",
-          "line": 17,
-          "code": "const { state, addNotification } = useAppContext()",
-          "context": "navigate",
-          "destructuring": [
-            "state",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\component\\DynamicPagess.tsx",
-          "line": 17,
-          "code": "const { state, addNotification } = useAppContext()",
-          "context": "navigate",
-          "destructuring": [
-            "state",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\component\\Navigation.tsx",
-          "line": 14,
-          "code": "const { state, toggleTheme, logout, addNotification } = useAppContext()",
-          "context": "Navigation",
-          "destructuring": [
-            "state",
-            "toggleTheme",
-            "logout",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\component\\Notifications.tsx",
-          "line": 11,
-          "code": "const { state, removeNotification } = useAppContext()",
-          "context": "Notifications",
-          "destructuring": [
-            "state",
-            "removeNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\pages\\AboutPage.tsx",
-          "line": 14,
-          "code": "const { state, addNotification } = useAppContext()",
-          "context": "AboutPage",
-          "destructuring": [
-            "state",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\pages\\ContactPage.tsx",
-          "line": 16,
-          "code": "const { state, addNotification } = useAppContext()",
-          "context": "ContactPage",
-          "destructuring": [
-            "state",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\pages\\DynamicPage.tsx",
-          "line": 17,
-          "code": "const { state, addNotification } = useAppContext()",
-          "context": "navigate",
-          "destructuring": [
-            "state",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\pages\\ExamplePage.tsx",
-          "line": 19,
-          "code": "const { state, addNotification } = useAppContext()",
-          "context": "ExamplePage",
-          "destructuring": [
-            "state",
-            "addNotification"
-          ],
-          "parameters": [],
-          "defaults": {}
-        },
-        {
-          "file": "src\\pages\\HomePage.tsx",
-          "line": 15,
-          "code": "const { state, toggleTheme, addNotification, setUser } = useAppContext()",
-          "context": "HomePage",
-          "destructuring": [
-            "state",
-            "toggleTheme",
-            "addNotification",
-            "setUser"
-          ],
-          "parameters": [],
-          "defaults": {}
-        }
-      ],
-      "isBuiltInHook": false,
-      "hookCategory": "custom"
-    },
-    {
       "displayName": "AboutPage",
       "filePath": "src\\pages\\AboutPage.tsx",
       "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information.",
@@ -711,8 +711,8 @@
       },
       "examples": [],
       "realUsageExamples": [
-        "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
-        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);"
+        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
+        "const [theme, setTheme] = useAppStorage('app-theme', 'light')"
       ],
       "hookSignature": "",
       "parameters": [
@@ -780,9 +780,9 @@
       },
       "examples": [],
       "realUsageExamples": [
+        "const { validateField, errors } = useFormValidator({\r\n    input: (val: string) => {\r\n      if (required && !val.trim()) return 'This field is required';\r\n      if (type === 'email' && val && !/\\S+@\\S+\\.\\S+/.test(val)) return 'Invalid email format';\r\n      return null;\r\n    }\r\n  });",
         "const { validateField, errors, isValid, validateAll } = useFormValidator({\r\n    name: (value: string) => {\r\n      if (!value.trim()) return 'Name is required'\r\n      if (value.length < 2) return 'Name must be at least 2 characters'\r\n      return null\r\n    },\r\n    email: (value: string) => {\r\n      if (!value.trim()) return 'Email is required'\r\n      if (!/\\S+@\\S+\\.\\S+/.test(value)) return 'Please enter a valid email address'\r\n      return null\r\n    },\r\n    company: (value: string) => {\r\n      if (value && value.length < 2) return 'Company name must be at least 2 characters'\r\n      return null\r\n    },\r\n    subject: (value: string) => {\r\n      if (!value.trim()) return 'Subject is required'\r\n      if (value.length < 5) return 'Subject must be at least 5 characters'\r\n      return null\r\n    },\r\n    message: (value: string) => {\r\n      if (!value.trim()) return 'Message is required'\r\n      if (value.length < 10) return 'Message must be at least 10 characters'\r\n      if (value.length > 1000) return 'Message must be less than 1000 characters'\r\n      return null\r\n    }\r\n  })",
-        "const { validateField, isValid } = useFormValidator({\r\n    email: (value: string) => /\\S+@\\S+\\.\\S+/.test(value) ? null : 'Invalid email',\r\n    name: (value: string) => value.length >= 2 ? null : 'Name too short'\r\n  })",
-        "const { validateField, errors } = useFormValidator({\r\n    input: (val: string) => {\r\n      if (required && !val.trim()) return 'This field is required';\r\n      if (type === 'email' && val && !/\\S+@\\S+\\.\\S+/.test(val)) return 'Invalid email format';\r\n      return null;\r\n    }\r\n  });"
+        "const { validateField, isValid } = useFormValidator({\r\n    email: (value: string) => /\\S+@\\S+\\.\\S+/.test(value) ? null : 'Invalid email',\r\n    name: (value: string) => value.length >= 2 ? null : 'Name too short'\r\n  })"
       ],
       "hookSignature": "",
       "parameters": [

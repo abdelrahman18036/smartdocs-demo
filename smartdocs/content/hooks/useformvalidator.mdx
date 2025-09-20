@@ -95,6 +95,18 @@ const { validateField, isValid } = useFormValidator({
 ### Usage 1
 
 ```typescript
+const { validateField, errors } = useFormValidator({
+    input: (val: string) => {
+      if (required && !val.trim()) return 'This field is required';
+      if (type === 'email' && val && !/\S+@\S+\.\S+/.test(val)) return 'Invalid email format';
+      return null;
+    }
+  });
+```
+
+### Usage 2
+
+```typescript
 const { validateField, errors, isValid, validateAll } = useFormValidator({
     name: (value: string) => {
       if (!value.trim()) return 'Name is required'
@@ -124,25 +136,13 @@ const { validateField, errors, isValid, validateAll } = useFormValidator({
   })
 ```
 
-### Usage 2
+### Usage 3
 
 ```typescript
 const { validateField, isValid } = useFormValidator({
     email: (value: string) => /\S+@\S+\.\S+/.test(value) ? null : 'Invalid email',
     name: (value: string) => value.length >= 2 ? null : 'Name too short'
   })
-```
-
-### Usage 3
-
-```typescript
-const { validateField, errors } = useFormValidator({
-    input: (val: string) => {
-      if (required && !val.trim()) return 'This field is required';
-      if (type === 'email' && val && !/\S+@\S+\.\S+/.test(val)) return 'Invalid email format';
-      return null;
-    }
-  });
 ```
 
 ## Source
