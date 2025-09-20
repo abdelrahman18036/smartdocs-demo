@@ -650,6 +650,228 @@
       "hookCategory": "custom"
     },
     {
+      "displayName": "useApiCall",
+      "filePath": "src\\services\\useApiCall.ts",
+      "description": "Custom hook for making API calls with loading and error states",
+      "type": "hook",
+      "props": [],
+      "jsdoc": {
+        "description": "Custom hook for making API calls with loading and error states"
+      },
+      "examples": [],
+      "realUsageExamples": [
+        "const { data: userData, loading, error } = useApiCall('/api/user-profile')",
+        "const { data: buttonData } = useApiCall('/api/button-config');"
+      ],
+      "hookSignature": "",
+      "parameters": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "options",
+          "type": "RequestInit",
+          "required": false
+        }
+      ],
+      "returnType": {
+        "type": "unknown"
+      },
+      "hookUsages": [
+        {
+          "file": "src\\component\\ButtonComponent.tsx",
+          "line": 41,
+          "code": "const { data: buttonData } = useApiCall('/api/button-config');",
+          "context": "ButtonComponent",
+          "destructuring": [
+            "data"
+          ],
+          "parameters": [
+            "{StringLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{StringLiteral}"
+          }
+        },
+        {
+          "file": "src\\pages\\ExamplePage.tsx",
+          "line": 26,
+          "code": "const { data: userData, loading, error } = useApiCall('/api/user-profile')",
+          "context": "ExamplePage",
+          "destructuring": [
+            "data",
+            "loading",
+            "error"
+          ],
+          "parameters": [
+            "{StringLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{StringLiteral}"
+          }
+        }
+      ],
+      "isBuiltInHook": false,
+      "hookCategory": "custom"
+    },
+    {
+      "displayName": "useAppStorage",
+      "filePath": "src\\utils\\useAppStorage.ts",
+      "description": "Custom hook for managing application storage state with automatic synchronization",
+      "type": "hook",
+      "props": [],
+      "jsdoc": {
+        "description": "Custom hook for managing application storage state with automatic synchronization"
+      },
+      "examples": [],
+      "realUsageExamples": [
+        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
+        "const [theme, setTheme] = useAppStorage('app-theme', 'light')"
+      ],
+      "hookSignature": "",
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "initialValue",
+          "type": "T",
+          "required": true
+        }
+      ],
+      "returnType": {
+        "type": "[T, unknown]"
+      },
+      "hookUsages": [
+        {
+          "file": "src\\component\\ButtonComponent.tsx",
+          "line": 40,
+          "code": "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
+          "context": "ButtonComponent",
+          "destructuring": [
+            "clickCount",
+            "setClickCount"
+          ],
+          "parameters": [
+            "{StringLiteral}",
+            "{NumericLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{NumericLiteral}"
+          }
+        },
+        {
+          "file": "src\\pages\\ExamplePage.tsx",
+          "line": 21,
+          "code": "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
+          "context": "ExamplePage",
+          "destructuring": [
+            "theme",
+            "setTheme"
+          ],
+          "parameters": [
+            "{StringLiteral}",
+            "{StringLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{StringLiteral}"
+          }
+        }
+      ],
+      "isBuiltInHook": false,
+      "hookCategory": "custom"
+    },
+    {
+      "displayName": "useFormValidator",
+      "filePath": "src\\utils\\useFormValidator.ts",
+      "description": "Custom hook for managing form validation state",
+      "type": "hook",
+      "props": [],
+      "jsdoc": {
+        "description": "Custom hook for managing form validation state"
+      },
+      "examples": [],
+      "realUsageExamples": [
+        "const { validateField, errors } = useFormValidator({\r\n    input: (val: string) => {\r\n      if (required && !val.trim()) return 'This field is required';\r\n      if (type === 'email' && val && !/\\S+@\\S+\\.\\S+/.test(val)) return 'Invalid email format';\r\n      return null;\r\n    }\r\n  });",
+        "const { validateField, errors, isValid, validateAll } = useFormValidator({\r\n    name: (value: string) => {\r\n      if (!value.trim()) return 'Name is required'\r\n      if (value.length < 2) return 'Name must be at least 2 characters'\r\n      return null\r\n    },\r\n    email: (value: string) => {\r\n      if (!value.trim()) return 'Email is required'\r\n      if (!/\\S+@\\S+\\.\\S+/.test(value)) return 'Please enter a valid email address'\r\n      return null\r\n    },\r\n    company: (value: string) => {\r\n      if (value && value.length < 2) return 'Company name must be at least 2 characters'\r\n      return null\r\n    },\r\n    subject: (value: string) => {\r\n      if (!value.trim()) return 'Subject is required'\r\n      if (value.length < 5) return 'Subject must be at least 5 characters'\r\n      return null\r\n    },\r\n    message: (value: string) => {\r\n      if (!value.trim()) return 'Message is required'\r\n      if (value.length < 10) return 'Message must be at least 10 characters'\r\n      if (value.length > 1000) return 'Message must be less than 1000 characters'\r\n      return null\r\n    }\r\n  })",
+        "const { validateField, isValid } = useFormValidator({\r\n    email: (value: string) => /\\S+@\\S+\\.\\S+/.test(value) ? null : 'Invalid email',\r\n    name: (value: string) => value.length >= 2 ? null : 'Name too short'\r\n  })"
+      ],
+      "hookSignature": "",
+      "parameters": [
+        {
+          "name": "validationRules",
+          "type": "unknown",
+          "required": true
+        }
+      ],
+      "returnType": {
+        "type": "any"
+      },
+      "hookUsages": [
+        {
+          "file": "src\\component\\InputField.tsx",
+          "line": 46,
+          "code": "const { validateField, errors } = useFormValidator({",
+          "context": "InputField",
+          "destructuring": [
+            "validateField",
+            "errors"
+          ],
+          "parameters": [
+            "{input: ...}"
+          ],
+          "defaults": {
+            "input": "..."
+          }
+        },
+        {
+          "file": "src\\pages\\ContactPage.tsx",
+          "line": 28,
+          "code": "const { validateField, errors, isValid, validateAll } = useFormValidator({",
+          "context": "ContactPage",
+          "destructuring": [
+            "validateField",
+            "errors",
+            "isValid",
+            "validateAll"
+          ],
+          "parameters": [
+            "{name: ..., email: ..., company: ..., subject: ..., message: ...}"
+          ],
+          "defaults": {
+            "name": "...",
+            "email": "...",
+            "company": "...",
+            "subject": "...",
+            "message": "..."
+          }
+        },
+        {
+          "file": "src\\pages\\ExamplePage.tsx",
+          "line": 29,
+          "code": "const { validateField, isValid } = useFormValidator({",
+          "context": "ExamplePage",
+          "destructuring": [
+            "validateField",
+            "isValid"
+          ],
+          "parameters": [
+            "{email: ..., name: ...}"
+          ],
+          "defaults": {
+            "email": "...",
+            "name": "..."
+          }
+        }
+      ],
+      "isBuiltInHook": false,
+      "hookCategory": "custom"
+    },
+    {
       "displayName": "AboutPage",
       "filePath": "src\\pages\\AboutPage.tsx",
       "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information.",
@@ -924,234 +1146,92 @@
       ]
     },
     {
-      "displayName": "useApiCall",
-      "filePath": "src\\services\\useApiCall.ts",
-      "description": "Custom hook for making API calls with loading and error states",
-      "type": "hook",
-      "props": [],
-      "jsdoc": {
-        "description": "Custom hook for making API calls with loading and error states"
-      },
-      "examples": [],
-      "realUsageExamples": [
-        "const { data: buttonData } = useApiCall('/api/button-config');",
-        "const { data: userData, loading, error } = useApiCall('/api/user-profile')"
-      ],
-      "hookSignature": "",
-      "parameters": [
-        {
-          "name": "url",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "options",
-          "type": "RequestInit",
-          "required": false
-        }
-      ],
-      "returnType": {
-        "type": "unknown"
-      },
-      "hookUsages": [
-        {
-          "file": "src\\component\\ButtonComponent.tsx",
-          "line": 41,
-          "code": "const { data: buttonData } = useApiCall('/api/button-config');",
-          "context": "ButtonComponent",
-          "destructuring": [
-            "data"
-          ],
-          "parameters": [
-            "{StringLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{StringLiteral}"
-          }
-        },
-        {
-          "file": "src\\pages\\ExamplePage.tsx",
-          "line": 26,
-          "code": "const { data: userData, loading, error } = useApiCall('/api/user-profile')",
-          "context": "ExamplePage",
-          "destructuring": [
-            "data",
-            "loading",
-            "error"
-          ],
-          "parameters": [
-            "{StringLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{StringLiteral}"
-          }
-        }
-      ],
-      "isBuiltInHook": false,
-      "hookCategory": "custom"
-    },
-    {
-      "displayName": "useAppStorage",
-      "filePath": "src\\utils\\useAppStorage.ts",
-      "description": "Custom hook for managing application storage state with automatic synchronization",
-      "type": "hook",
-      "props": [],
-      "jsdoc": {
-        "description": "Custom hook for managing application storage state with automatic synchronization"
-      },
-      "examples": [],
-      "realUsageExamples": [
-        "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
-        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);"
-      ],
-      "hookSignature": "",
-      "parameters": [
-        {
-          "name": "key",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "initialValue",
-          "type": "T",
-          "required": true
-        }
-      ],
-      "returnType": {
-        "type": "[T, unknown]"
-      },
-      "hookUsages": [
-        {
-          "file": "src\\component\\ButtonComponent.tsx",
-          "line": 40,
-          "code": "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
-          "context": "ButtonComponent",
-          "destructuring": [
-            "clickCount",
-            "setClickCount"
-          ],
-          "parameters": [
-            "{StringLiteral}",
-            "{NumericLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{NumericLiteral}"
-          }
-        },
-        {
-          "file": "src\\pages\\ExamplePage.tsx",
-          "line": 21,
-          "code": "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
-          "context": "ExamplePage",
-          "destructuring": [
-            "theme",
-            "setTheme"
-          ],
-          "parameters": [
-            "{StringLiteral}",
-            "{StringLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{StringLiteral}"
-          }
-        }
-      ],
-      "isBuiltInHook": false,
-      "hookCategory": "custom"
-    },
-    {
-      "displayName": "useFormValidator",
-      "filePath": "src\\utils\\useFormValidator.ts",
-      "description": "Custom hook for managing form validation state",
-      "type": "hook",
-      "props": [],
-      "jsdoc": {
-        "description": "Custom hook for managing form validation state"
-      },
-      "examples": [],
-      "realUsageExamples": [
-        "const { validateField, errors, isValid, validateAll } = useFormValidator({\r\n    name: (value: string) => {\r\n      if (!value.trim()) return 'Name is required'\r\n      if (value.length < 2) return 'Name must be at least 2 characters'\r\n      return null\r\n    },\r\n    email: (value: string) => {\r\n      if (!value.trim()) return 'Email is required'\r\n      if (!/\\S+@\\S+\\.\\S+/.test(value)) return 'Please enter a valid email address'\r\n      return null\r\n    },\r\n    company: (value: string) => {\r\n      if (value && value.length < 2) return 'Company name must be at least 2 characters'\r\n      return null\r\n    },\r\n    subject: (value: string) => {\r\n      if (!value.trim()) return 'Subject is required'\r\n      if (value.length < 5) return 'Subject must be at least 5 characters'\r\n      return null\r\n    },\r\n    message: (value: string) => {\r\n      if (!value.trim()) return 'Message is required'\r\n      if (value.length < 10) return 'Message must be at least 10 characters'\r\n      if (value.length > 1000) return 'Message must be less than 1000 characters'\r\n      return null\r\n    }\r\n  })",
-        "const { validateField, isValid } = useFormValidator({\r\n    email: (value: string) => /\\S+@\\S+\\.\\S+/.test(value) ? null : 'Invalid email',\r\n    name: (value: string) => value.length >= 2 ? null : 'Name too short'\r\n  })",
-        "const { validateField, errors } = useFormValidator({\r\n    input: (val: string) => {\r\n      if (required && !val.trim()) return 'This field is required';\r\n      if (type === 'email' && val && !/\\S+@\\S+\\.\\S+/.test(val)) return 'Invalid email format';\r\n      return null;\r\n    }\r\n  });"
-      ],
-      "hookSignature": "",
-      "parameters": [
-        {
-          "name": "validationRules",
-          "type": "unknown",
-          "required": true
-        }
-      ],
-      "returnType": {
-        "type": "any"
-      },
-      "hookUsages": [
-        {
-          "file": "src\\component\\InputField.tsx",
-          "line": 46,
-          "code": "const { validateField, errors } = useFormValidator({",
-          "context": "InputField",
-          "destructuring": [
-            "validateField",
-            "errors"
-          ],
-          "parameters": [
-            "{input: ...}"
-          ],
-          "defaults": {
-            "input": "..."
-          }
-        },
-        {
-          "file": "src\\pages\\ContactPage.tsx",
-          "line": 28,
-          "code": "const { validateField, errors, isValid, validateAll } = useFormValidator({",
-          "context": "ContactPage",
-          "destructuring": [
-            "validateField",
-            "errors",
-            "isValid",
-            "validateAll"
-          ],
-          "parameters": [
-            "{name: ..., email: ..., company: ..., subject: ..., message: ...}"
-          ],
-          "defaults": {
-            "name": "...",
-            "email": "...",
-            "company": "...",
-            "subject": "...",
-            "message": "..."
-          }
-        },
-        {
-          "file": "src\\pages\\ExamplePage.tsx",
-          "line": 29,
-          "code": "const { validateField, isValid } = useFormValidator({",
-          "context": "ExamplePage",
-          "destructuring": [
-            "validateField",
-            "isValid"
-          ],
-          "parameters": [
-            "{email: ..., name: ...}"
-          ],
-          "defaults": {
-            "email": "...",
-            "name": "..."
-          }
-        }
-      ],
-      "isBuiltInHook": false,
-      "hookCategory": "custom"
-    },
-    {
       "displayName": "useState",
       "filePath": "React Built-in",
       "description": "Returns a stateful value and a function to update it",
       "type": "hook",
       "props": [],
       "hookUsages": [
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 32,
+          "code": "const [data, setData] = useState<T | null>(null);",
+          "context": "useApiCall",
+          "destructuring": [
+            "data",
+            "setData"
+          ],
+          "parameters": [
+            "{NullLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{NullLiteral}"
+          }
+        },
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 33,
+          "code": "const [loading, setLoading] = useState(true);",
+          "context": "useApiCall",
+          "destructuring": [
+            "loading",
+            "setLoading"
+          ],
+          "parameters": [
+            "{BooleanLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{BooleanLiteral}"
+          }
+        },
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 34,
+          "code": "const [error, setError] = useState<Error | null>(null);",
+          "context": "useApiCall",
+          "destructuring": [
+            "error",
+            "setError"
+          ],
+          "parameters": [
+            "{NullLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{NullLiteral}"
+          }
+        },
+        {
+          "file": "src\\utils\\useAppStorage.ts",
+          "line": 21,
+          "code": "const [storedValue, setStoredValue] = useState<T>(() => {",
+          "context": "useAppStorage",
+          "destructuring": [
+            "storedValue",
+            "setStoredValue"
+          ],
+          "parameters": [
+            "() => {...}"
+          ],
+          "defaults": {
+            "callback": "function"
+          }
+        },
+        {
+          "file": "src\\utils\\useFormValidator.ts",
+          "line": 18,
+          "code": "const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});",
+          "context": "useFormValidator",
+          "destructuring": [
+            "errors",
+            "setErrors"
+          ],
+          "parameters": [
+            "{}"
+          ],
+          "defaults": {
+            "initialState": "{}"
+          }
+        },
         {
           "file": "src\\pages\\ContactPage.tsx",
           "line": 17,
@@ -1267,86 +1347,6 @@
           ],
           "defaults": {
             "initialState": "{NumericLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 32,
-          "code": "const [data, setData] = useState<T | null>(null);",
-          "context": "useApiCall",
-          "destructuring": [
-            "data",
-            "setData"
-          ],
-          "parameters": [
-            "{NullLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{NullLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 33,
-          "code": "const [loading, setLoading] = useState(true);",
-          "context": "useApiCall",
-          "destructuring": [
-            "loading",
-            "setLoading"
-          ],
-          "parameters": [
-            "{BooleanLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{BooleanLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 34,
-          "code": "const [error, setError] = useState<Error | null>(null);",
-          "context": "useApiCall",
-          "destructuring": [
-            "error",
-            "setError"
-          ],
-          "parameters": [
-            "{NullLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{NullLiteral}"
-          }
-        },
-        {
-          "file": "src\\utils\\useAppStorage.ts",
-          "line": 21,
-          "code": "const [storedValue, setStoredValue] = useState<T>(() => {",
-          "context": "useAppStorage",
-          "destructuring": [
-            "storedValue",
-            "setStoredValue"
-          ],
-          "parameters": [
-            "() => {...}"
-          ],
-          "defaults": {
-            "callback": "function"
-          }
-        },
-        {
-          "file": "src\\utils\\useFormValidator.ts",
-          "line": 18,
-          "code": "const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});",
-          "context": "useFormValidator",
-          "destructuring": [
-            "errors",
-            "setErrors"
-          ],
-          "parameters": [
-            "{}"
-          ],
-          "defaults": {
-            "initialState": "{}"
           }
         }
       ],

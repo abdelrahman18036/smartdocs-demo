@@ -915,10 +915,6 @@ export default function NavigationsPage({ navigationData }: NavigationsPageProps
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  console.log('🗺️ [NAV DEBUG] Starting getStaticProps for navigations')
-  console.log('🗺️ [NAV DEBUG] Current working directory:', process.cwd())
-  console.log('🗺️ [NAV DEBUG] Environment:', process.env.NODE_ENV)
-  
   let navigationData: NavigationData = { components: [] }
   
   try {
@@ -926,38 +922,12 @@ export const getStaticProps: GetStaticProps = async () => {
     const path = await import('path')
     const searchJsonPath = path.join(process.cwd(), 'content', 'search.json')
     
-    console.log('🗺️ [NAV DEBUG] Trying to read search.json from:', searchJsonPath)
-    
-    // Check if search.json exists
-    try {
-      await fs.promises.access(searchJsonPath)
-      console.log('✅ [NAV DEBUG] search.json exists')
-    } catch (accessError) {
-      console.error('❌ [NAV DEBUG] search.json not found:', accessError)
-      throw accessError
-    }
-    
     const searchData = JSON.parse(fs.readFileSync(searchJsonPath, 'utf-8'))
-    console.log('📊 [NAV DEBUG] Search data loaded with', searchData.components?.length || 0, 'components')
-    
-    // Log component types breakdown
-    const componentsByType = searchData.components?.reduce((acc: any, comp: any) => {
-      acc[comp.type] = (acc[comp.type] || 0) + 1
-      return acc
-    }, {}) || {}
-    console.log('📊 [NAV DEBUG] Components by type:', componentsByType)
-    
     navigationData = { components: searchData.components || [] }
-    
-    console.log('✅ [NAV DEBUG] Successfully loaded navigation data with', navigationData.components.length, 'components')
-    
   } catch (error) {
-    console.error('❌ [NAV DEBUG] Error loading components data for navigations:', error instanceof Error ? error.message : String(error))
-    console.error('❌ [NAV DEBUG] Full error:', error)
+    console.warn('Could not read components data for navigations:', error)
     navigationData = { components: [] }
   }
-
-  console.log('📤 [NAV DEBUG] Returning navigation data with', navigationData.components.length, 'components')
 
   return {
     props: {
