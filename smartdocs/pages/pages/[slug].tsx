@@ -733,9 +733,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       console.log('🔧 [PAGE DEBUG] Component has usedComponents?', !!component.usedComponents)
       console.log('🔧 [PAGE DEBUG] usedComponents type:', typeof component.usedComponents)
       console.log('🔧 [PAGE DEBUG] usedComponents length:', component.usedComponents?.length || 'N/A')
+    }
 
     console.log('🎯 [PAGE DEBUG] Final result - usedComponents:', usedComponents.length)
-    console.log('📤 [PAGE DEBUG] Returning props with component:', component.displayName, 'and', usedComponents.length, 'used components')
+    console.log('📤 [PAGE DEBUG] Returning props with component:', component?.displayName || 'MDX only', 'and', usedComponents.length, 'used components')
 
     return {
       props: {
