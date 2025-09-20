@@ -541,6 +541,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  console.log('🔍 [PAGE DEBUG] Starting getStaticProps for slug:', params?.slug)
+  console.log('🔍 [PAGE DEBUG] Current working directory:', process.cwd())
+  console.log('🔍 [PAGE DEBUG] Environment:', process.env.NODE_ENV)
+  console.log('🔍 [PAGE DEBUG] Platform:', process.platform)
+  
   let component: any = null
   let usedComponents: Array<{name: string, type: string, count: number, firstUsage: string}> = []
   
@@ -549,23 +554,51 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const path = await import('path')
     const searchJsonPath = path.join(process.cwd(), 'content', 'search.json')
     
+    console.log('🔍 [PAGE DEBUG] Trying to read search.json from:', searchJsonPath)
+    
+    // Check if search.json exists
+    try {
+      await fs.promises.access(searchJsonPath)
+      console.log('✅ [PAGE DEBUG] search.json exists')
+    } catch (accessError) {
+      console.error('❌ [PAGE DEBUG] search.json not found:', accessError)
+      throw new Error('search.json not found')
+    }
+    
     const searchData = JSON.parse(fs.readFileSync(searchJsonPath, 'utf-8'))
+    console.log('📊 [PAGE DEBUG] Search data loaded with', searchData.components?.length || 0, 'components')
+    
+    // Log all page components for debugging
+    const pageComponents = searchData.components.filter((comp: any) => comp.type === 'page')
+    console.log('📄 [PAGE DEBUG] Available page components:', pageComponents.map((c: any) => c.displayName))
     
     component = searchData.components.find(
       (comp: any) => comp.displayName.toLowerCase() === params?.slug && comp.type === 'page'
     )
 
     if (!component) {
+      console.error('❌ [PAGE DEBUG] Component not found for slug:', params?.slug)
       return {
         notFound: true
       }
     }
 
+    console.log('✅ [PAGE DEBUG] Found component:', component.displayName)
+    console.log('📁 [PAGE DEBUG] Component file path:', component.filePath)
+    console.log('🔧 [PAGE DEBUG] Component has usedComponents?', !!component.usedComponents)
+    console.log('🔧 [PAGE DEBUG] usedComponents type:', typeof component.usedComponents)
+    console.log('🔧 [PAGE DEBUG] usedComponents length:', component.usedComponents?.length || 'N/A')
+
     // Use pre-generated component usage data if available (preferred for production)
     if (component.usedComponents && Array.isArray(component.usedComponents)) {
       usedComponents = component.usedComponents
-      console.log(`✓ Using pre-generated component usage data for ${component.displayName} (${usedComponents.length} components)`)
+      console.log(`✅ [PAGE DEBUG] Using pre-generated component usage data for ${component.displayName} (${usedComponents.length} components)`)
+      usedComponents.forEach((comp, index) => {
+        console.log(`  ${index + 1}. ${comp.name} (${comp.type}): ${comp.count} usages`)
+      })
     } else {
+      console.log('⚠️ [PAGE DEBUG] No pre-generated component usage data found, trying runtime extraction...')
+      
       // Fallback: Try to extract at runtime (development only)
       try {
         if (component.filePath) {
@@ -574,32 +607,47 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           // Only try a few likely paths to avoid excessive file system operations
           const possiblePaths = [
             path.resolve(process.cwd(), '..', component.filePath),
-            path.resolve(process.cwd(), '..', '..', component.filePath)
+            path.resolve(process.cwd(), '..', '..', component.filePath),
+            path.resolve(process.cwd(), component.filePath),
+            component.filePath
           ]
+          
+          console.log('🔍 [PAGE DEBUG] Trying file paths:', possiblePaths)
           
           for (const filePath of possiblePaths) {
             try {
+              console.log('🔍 [PAGE DEBUG] Checking path:', filePath)
               if (fs.existsSync(filePath)) {
                 pageContent = fs.readFileSync(filePath, 'utf-8')
+                console.log(`✅ [PAGE DEBUG] Found file at: ${filePath} (${pageContent.length} chars)`)
                 break
+              } else {
+                console.log('❌ [PAGE DEBUG] File not found at:', filePath)
               }
             } catch (e) {
-              // Continue silently
+              console.log('❌ [PAGE DEBUG] Error accessing file:', filePath, e)
             }
           }
           
           if (pageContent) {
             usedComponents = extractUsedComponents(pageContent, searchData.components)
-            console.log(`✓ Extracted component usage at runtime for ${component.displayName} (${usedComponents.length} components)`)
+            console.log(`✅ [PAGE DEBUG] Extracted component usage at runtime for ${component.displayName} (${usedComponents.length} components)`)
+            usedComponents.forEach((comp, index) => {
+              console.log(`  ${index + 1}. ${comp.name} (${comp.type}): ${comp.count} usages`)
+            })
           } else {
-            console.warn(`⚠️  No component usage data available for ${component.displayName} (source file not found)`)
+            console.warn(`⚠️ [PAGE DEBUG] No component usage data available for ${component.displayName} (source file not found)`)
           }
+        } else {
+          console.warn(`⚠️ [PAGE DEBUG] No filePath provided for component ${component.displayName}`)
         }
       } catch (error) {
-        // Fail silently - this is expected on Vercel where source files aren't available
-        console.warn('Could not extract used components (this is normal on Vercel):', error instanceof Error ? error.message : String(error))
+        console.warn('⚠️ [PAGE DEBUG] Could not extract used components (this is normal on Vercel):', error instanceof Error ? error.message : String(error))
       }
     }
+
+    console.log('🎯 [PAGE DEBUG] Final result - usedComponents:', usedComponents.length)
+    console.log('📤 [PAGE DEBUG] Returning props with component:', component.displayName, 'and', usedComponents.length, 'used components')
 
     return {
       props: {
@@ -608,7 +656,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     }
   } catch (error) {
-    console.warn('Could not read components data for page:', error)
+    console.error('❌ [PAGE DEBUG] Error in getStaticProps:', error instanceof Error ? error.message : String(error))
+    console.error('❌ [PAGE DEBUG] Full error:', error)
     return {
       notFound: true
     }

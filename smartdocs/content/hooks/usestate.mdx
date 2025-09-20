@@ -20,60 +20,6 @@ Found **12 usage(s)** across your codebase:
 
 ### Usage 1
 
-**File:** `src\services\useApiCall.ts` (line 32)
-
-**Context:** Used in `useApiCall` function
-
-```typescript
-const [data, setData] = useState<T | null>(null);
-```
-
-**Destructured variables:** `data`, `setData`
-
-**Parameters used:** `{NullLiteral}`
-
-**Default values:**
-
-- `initialState`: `{NullLiteral}`
-
-### Usage 2
-
-**File:** `src\services\useApiCall.ts` (line 33)
-
-**Context:** Used in `useApiCall` function
-
-```typescript
-const [loading, setLoading] = useState(true);
-```
-
-**Destructured variables:** `loading`, `setLoading`
-
-**Parameters used:** `{BooleanLiteral}`
-
-**Default values:**
-
-- `initialState`: `{BooleanLiteral}`
-
-### Usage 3
-
-**File:** `src\services\useApiCall.ts` (line 34)
-
-**Context:** Used in `useApiCall` function
-
-```typescript
-const [error, setError] = useState<Error | null>(null);
-```
-
-**Destructured variables:** `error`, `setError`
-
-**Parameters used:** `{NullLiteral}`
-
-**Default values:**
-
-- `initialState`: `{NullLiteral}`
-
-### Usage 4
-
 **File:** `src\pages\ContactPage.tsx` (line 17)
 
 **Context:** Used in `ContactPage` function
@@ -95,7 +41,7 @@ const [formData, setFormData] = useState({
 - `message`: `...`
 - `newsletter`: `...`
 
-### Usage 5
+### Usage 2
 
 **File:** `src\pages\ContactPage.tsx` (line 25)
 
@@ -113,7 +59,7 @@ const [isSubmitting, setIsSubmitting] = useState(false)
 
 - `initialState`: `{BooleanLiteral}`
 
-### Usage 6
+### Usage 3
 
 **File:** `src\pages\ExamplePage.tsx` (line 20)
 
@@ -131,7 +77,7 @@ const [showModal, setShowModal] = useState(false)
 
 - `initialState`: `{BooleanLiteral}`
 
-### Usage 7
+### Usage 4
 
 **File:** `src\pages\ExamplePage.tsx` (line 22)
 
@@ -149,7 +95,7 @@ const [email, setEmail] = useState('')
 
 - `initialState`: `{StringLiteral}`
 
-### Usage 8
+### Usage 5
 
 **File:** `src\pages\ExamplePage.tsx` (line 23)
 
@@ -167,7 +113,7 @@ const [name, setName] = useState('')
 
 - `initialState`: `{StringLiteral}`
 
-### Usage 9
+### Usage 6
 
 **File:** `src\pages\HomePage.tsx` (line 16)
 
@@ -185,7 +131,7 @@ const [showWelcomeModal, setShowWelcomeModal] = useState(false)
 
 - `initialState`: `{BooleanLiteral}`
 
-### Usage 10
+### Usage 7
 
 **File:** `src\pages\HomePage.tsx` (line 17)
 
@@ -202,6 +148,60 @@ const [userCount, setUserCount] = useState(1250)
 **Default values:**
 
 - `initialState`: `{NumericLiteral}`
+
+### Usage 8
+
+**File:** `src\services\useApiCall.ts` (line 32)
+
+**Context:** Used in `useApiCall` function
+
+```typescript
+const [data, setData] = useState<T | null>(null);
+```
+
+**Destructured variables:** `data`, `setData`
+
+**Parameters used:** `{NullLiteral}`
+
+**Default values:**
+
+- `initialState`: `{NullLiteral}`
+
+### Usage 9
+
+**File:** `src\services\useApiCall.ts` (line 33)
+
+**Context:** Used in `useApiCall` function
+
+```typescript
+const [loading, setLoading] = useState(true);
+```
+
+**Destructured variables:** `loading`, `setLoading`
+
+**Parameters used:** `{BooleanLiteral}`
+
+**Default values:**
+
+- `initialState`: `{BooleanLiteral}`
+
+### Usage 10
+
+**File:** `src\services\useApiCall.ts` (line 34)
+
+**Context:** Used in `useApiCall` function
+
+```typescript
+const [error, setError] = useState<Error | null>(null);
+```
+
+**Destructured variables:** `error`, `setError`
+
+**Parameters used:** `{NullLiteral}`
+
+**Default values:**
+
+- `initialState`: `{NullLiteral}`
 
 ### Usage 11
 
