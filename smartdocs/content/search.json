@@ -512,8 +512,8 @@
       "examples": [],
       "realUsageExamples": [
         "const { state, addNotification } = useAppContext()",
-        "const { state, toggleTheme, addNotification, setUser } = useAppContext()",
-        "const { state, toggleTheme, logout, addNotification } = useAppContext()"
+        "const { state, toggleTheme, logout, addNotification } = useAppContext()",
+        "const { state, removeNotification } = useAppContext()"
       ],
       "hookSignature": "",
       "parameters": [],
