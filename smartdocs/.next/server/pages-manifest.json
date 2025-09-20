@@ -3,7 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/packages": "pages/api/packages.js",
+  "/pages/[slug]": "pages/pages/[slug].js",
   "/api/components": "pages/api/components.js",
-  "/pages/[slug]": "pages/pages/[slug].js"
+  "/api/packages": "pages/api/packages.js"
 }

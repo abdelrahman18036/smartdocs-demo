@@ -18,14 +18,44 @@
       "displayName": "TestPage",
       "filePath": "src\\Test.tsx",
       "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information.",
-      "type": "component",
+      "type": "page",
       "props": [],
       "jsdoc": {
         "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information."
       },
       "examples": [],
-      "realUsageExamples": [
-        "<TestPage />"
+      "realUsageExamples": [],
+      "usedComponents": [
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 6,
+          "firstUsage": "<CardWidget\r\n          title=\"Project Statistics\""
+        },
+        {
+          "name": "Badge",
+          "type": "component",
+          "count": 2,
+          "firstUsage": "<Badge key={skillIndex} variant=\"secondary\" size=\""
+        },
+        {
+          "name": "Button",
+          "type": "component",
+          "count": 3,
+          "firstUsage": "<Button \r\n                    variant=\"secondary\""
+        },
+        {
+          "name": "ButtonComponent",
+          "type": "component",
+          "count": 3,
+          "firstUsage": "<ButtonComponent variant=\"primary\" size=\"small\" cl"
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "ge() {\r\n  const { state, addNotification } = useAp"
+        }
       ]
     },
     {
@@ -1001,8 +1031,8 @@
       },
       "examples": [],
       "realUsageExamples": [
-        "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
-        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);"
+        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
+        "const [theme, setTheme] = useAppStorage('app-theme', 'light')"
       ],
       "hookSignature": "",
       "parameters": [
