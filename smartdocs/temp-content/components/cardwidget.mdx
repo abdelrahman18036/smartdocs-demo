@@ -1,0 +1,97 @@
+---
+title: CardWidget
+slug: /components/cardwidget
+---
+
+# CardWidget
+
+A versatile card widget component for organizing content
+
+## Real Usage Examples
+
+### Usage 1
+
+```tsx
+<CardWidget
+title="Our Mission"
+subtitle="Building better developer experiences"
+elevation="lg"
+className="mb-12 text-center"
+>
+<div className="space-y-4">
+<p className="text-lg text-gray-700 dark:text-gray-300">
+SmartDocs Demo showcases how modern React applications can be built with
+clean architecture, comprehensive TypeScript typing, and automatic documentation generation.
+</p>
+<p className="text-gray-600 dark:text-gray-400">
+Our goal is to provide developers with a reference implementation that follows
+best practices for component design, state management, and code organization.
+</p>
+</div>
+</CardWidget>
+```
+
+### Usage 2
+
+```tsx
+<CardWidget
+key={index}
+title={tech.name}
+subtitle={`Version ${tech.version}`}
+elevation="md"
+hoverable
+>
+<div className="space-y-3">
+<Badge variant="primary" size="small">
+{tech.category}
+</Badge>
+<Button
+variant="secondary"
+size="small"
+className="w-full"
+onClick={() => handleLearnMore(tech.name)}
+>
+Learn More
+</Button>
+</div>
+</CardWidget>
+```
+
+### Usage 3
+
+```tsx
+<CardWidget
+key={index}
+title={feature.title}
+subtitle={feature.description}
+elevation="md"
+hoverable
+>
+<div className="flex items-center space-x-4">
+<div className="text-4xl">{feature.icon}</div>
+<Button
+variant="primary"
+size="small"
+onClick={() => handleLearnMore(feature.title)}
+>
+Explore
+</Button>
+</div>
+</CardWidget>
+```
+
+## Props
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `ReactNode` | Yes | - | The main content of the card |
+| `title` | `string` | No | - | Optional title displayed in the card header |
+| `subtitle` | `string` | No | - | Optional subtitle displayed below the title |
+| `footer` | `ReactNode` | No | - | Optional footer content (buttons, links, etc.) |
+| `className` | `string` | No | `{"value":""}` | Additional CSS classes |
+| `elevation` | `enum` | No | `md` | Card elevation/shadow level |
+| `hoverable` | `boolean` | No | `false` | Whether the card should be hoverable with animation |
+
+
+## Source
+`src\component\CardWidget.tsx`

@@ -4,6 +4,7 @@
   "/_document": "pages/_document.js",
   "/packages/dependencies": "pages/packages/dependencies.js",
   "/api/packages": "pages/api/packages.js",
-  "/api/components": "pages/api/components.js",
-  "/sitemap": "pages/sitemap.js"
+  "/pages/[slug]": "pages/pages/[slug].js",
+  "/navigations": "pages/navigations.js",
+  "/api/components": "pages/api/components.js"
 }

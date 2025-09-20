@@ -1,0 +1,86 @@
+---
+title: useAppStorage
+slug: /hooks/useappstorage
+---
+
+# useAppStorage
+
+Custom hook for managing application storage state with automatic synchronization
+
+## Hook Information
+
+**Category:** custom
+
+**Type:** Custom Hook
+
+
+## Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `key` | `string` | Yes |  |
+| `initialValue` | `T` | Yes |  |
+
+
+## Return Type
+
+**Type:** `[T, unknown]`
+
+## Hook Usage in Codebase
+
+Found **2 usage(s)** across your codebase:
+
+### Usage 1
+
+**File:** `src\component\ButtonComponent.tsx` (line 40)
+
+**Context:** Used in `ButtonComponent` function
+
+```typescript
+const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);
+```
+
+**Destructured variables:** `clickCount`, `setClickCount`
+
+**Parameters used:** `{StringLiteral}`, `{NumericLiteral}`
+
+**Default values:**
+
+- `initialState`: `{NumericLiteral}`
+
+### Usage 2
+
+**File:** `src\pages\ExamplePage.tsx` (line 21)
+
+**Context:** Used in `ExamplePage` function
+
+```typescript
+const [theme, setTheme] = useAppStorage('app-theme', 'light')
+```
+
+**Destructured variables:** `theme`, `setTheme`
+
+**Parameters used:** `{StringLiteral}`, `{StringLiteral}`
+
+**Default values:**
+
+- `initialState`: `{StringLiteral}`
+
+
+
+## Real Usage Examples
+
+### Usage 1
+
+```typescript
+const [theme, setTheme] = useAppStorage('app-theme', 'light')
+```
+
+### Usage 2
+
+```typescript
+const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);
+```
+
+## Source
+`src\utils\useAppStorage.ts`

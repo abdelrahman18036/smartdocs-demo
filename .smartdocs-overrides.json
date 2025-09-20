@@ -20,10 +20,10 @@
     {
       "filePath": "src\\component\\Notifications.tsx",
       "componentName": "Notifications",
-      "originalType": "component",
-      "overrideType": "page",
-      "timestamp": "2025-09-20T01:06:42.588Z",
-      "reason": "User override: component → page"
+      "originalType": "page",
+      "overrideType": "component",
+      "timestamp": "2025-09-20T02:23:49.620Z",
+      "reason": "User override: page → component"
     }
   ]
 }

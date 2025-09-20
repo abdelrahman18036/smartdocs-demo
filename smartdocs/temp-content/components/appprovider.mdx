@@ -1,0 +1,48 @@
+---
+title: AppProvider
+slug: /components/appprovider
+---
+
+# AppProvider
+
+App Context Provider
+
+Provides global state management for the entire application using React Context and useReducer.
+Manages theme, user authentication, notifications, and loading states.
+
+## Real Usage Examples
+
+### Usage 1
+
+```tsx
+<AppProvider>
+<Router>
+<div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+<Navigation />
+<Notifications />
+<main>
+<Routes>
+<Route path="/" element={<HomePage />} />
+<Route path="/about" element={<AboutPage />} />
+<Route path="/contact" element={<ContactPage />} />
+<Route path="/examples" element={<ExamplePage />} />
+{/* Dynamic routes with ID parameters */}
+<Route path="/pages/:id" element={<DynamicPage />} />
+<Route path="/articles/:id" element={<DynamicPagess />} />
+<Route path="/products/:id" element={<DynamicPages />} />
+<Route path="/test" element={<TestPage />} />
+{/* Catch-all route for 404 */}
+<Route path="*" element={<NotFoundPage />} />
+</Routes>
+</main>
+</div>
+</Router>
+</AppProvider>
+```
+
+## Props
+
+No props available.
+
+## Source
+`src\context\AppContext.tsx`
