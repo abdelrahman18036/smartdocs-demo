@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "overrides": [
+    {
+      "filePath": "src\\component\\Badge.tsx",
+      "componentName": "Badge",
+      "originalType": "page",
+      "overrideType": "component",
+      "timestamp": "2025-09-20T01:18:09.234Z",
+      "reason": "User override: page → component"
+    },
+    {
+      "filePath": "src\\Test.tsx",
+      "componentName": "TestPage",
+      "originalType": "page",
+      "overrideType": "component",
+      "timestamp": "2025-09-20T01:08:45.430Z",
+      "reason": "User override: page → component"
+    },
+    {
+      "filePath": "src\\component\\Notifications.tsx",
+      "componentName": "Notifications",
+      "originalType": "component",
+      "overrideType": "page",
+      "timestamp": "2025-09-20T01:06:42.588Z",
+      "reason": "User override: component → page"
+    }
+  ]
+}

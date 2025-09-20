@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
+  "/packages/dependencies": "pages/packages/dependencies.js",
+  "/api/packages": "pages/api/packages.js",
   "/api/components": "pages/api/components.js",
-  "/api/packages": "pages/api/packages.js"
+  "/sitemap": "pages/sitemap.js"
 }

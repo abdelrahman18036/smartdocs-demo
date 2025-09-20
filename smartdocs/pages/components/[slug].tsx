@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import fs from 'fs'
 import path from 'path'
 import Pagination, { usePagination } from '../../components/Pagination'
+import { TypeOverrideControl } from '../../components/TypeOverrideControl'
 
 interface ComponentPageProps {
   component: any
@@ -21,10 +22,12 @@ export default function ComponentPage({ component }: ComponentPageProps) {
         </p>
         
         {/* Component Information */}
-        <div className="flex gap-4 flex-wrap">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-            React Component
-          </span>
+        <div className="flex gap-4 flex-wrap items-center">
+          <TypeOverrideControl
+            componentName={component.displayName}
+            filePath={component.filePath}
+            currentType={component.type || 'component'}
+          />
           {component.props && component.props.length > 0 && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
               {component.props.length} prop{component.props.length !== 1 ? 's' : ''}
@@ -239,26 +242,8 @@ export default function ComponentPage({ component }: ComponentPageProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const searchPath = path.join(process.cwd(), 'content', 'search.json')
-    
-    // Check if file exists first
-    if (!fs.existsSync(searchPath)) {
-      console.error(`Search.json not found at: ${searchPath}`)
-      return {
-        paths: [],
-        fallback: false
-      }
-    }
-    
+    const searchPath = path.join(process.cwd(),  'content', 'search.json')
     const searchData = JSON.parse(fs.readFileSync(searchPath, 'utf-8'))
-    
-    if (!searchData.components || !Array.isArray(searchData.components)) {
-      console.error('Invalid search data: components array not found')
-      return {
-        paths: [],
-        fallback: false
-      }
-    }
     
     const paths = searchData.components
       .filter((comp: any) => comp.type === 'component')
@@ -266,14 +251,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
         params: { slug: comp.displayName.toLowerCase() }
       }))
 
-    console.log(`Generated ${paths.length} component paths:`, paths.map((p: any) => p.params.slug))
-
     return {
       paths,
       fallback: false
     }
   } catch (error) {
-    console.error('Error in getStaticPaths:', error)
     return {
       paths: [],
       fallback: false
@@ -281,52 +263,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const searchPath = path.join(process.cwd(), 'content', 'search.json')
-    
-    // Check if file exists
-    if (!fs.existsSync(searchPath)) {
-      console.error(`Search.json not found at: ${searchPath}`)
-      return {
-        notFound: true
-      }
-    }
-    
     const searchData = JSON.parse(fs.readFileSync(searchPath, 'utf-8'))
     
-    if (!searchData.components || !Array.isArray(searchData.components)) {
-      console.error('Invalid search data: components array not found')
-      return {
-        notFound: true
-      }
-    }
-    
-    const slug = params?.slug
-    if (!slug) {
-      console.error('No slug parameter provided')
-      return {
-        notFound: true
-      }
-    }
-    
     const component = searchData.components.find(
-      (comp: any) => comp.displayName.toLowerCase() === slug && comp.type === 'component'
+      (comp: any) => comp.displayName.toLowerCase() === params?.slug && comp.type === 'component'
     )
 
     if (!component) {
-      console.error(`Component not found for slug: ${slug}`)
-      console.log('Available component slugs:', 
-        searchData.components
-          .filter((comp: any) => comp.type === 'component')
-          .map((comp: any) => comp.displayName.toLowerCase())
-      )
       return {
         notFound: true
       }
     }
-
-    console.log(`Successfully found component: ${component.displayName} for slug: ${slug}`)
 
     return {
       props: {
@@ -334,7 +284,6 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
       }
     }
   } catch (error) {
-    console.error('Error in getStaticProps:', error)
     return {
       notFound: true
     }
