@@ -436,8 +436,8 @@
       "examples": [],
       "realUsageExamples": [
         "const { state, addNotification } = useAppContext()",
-        "const { state, toggleTheme, logout, addNotification } = useAppContext()",
-        "const { state, removeNotification } = useAppContext()"
+        "const { state, toggleTheme, addNotification, setUser } = useAppContext()",
+        "const { state, toggleTheme, logout, addNotification } = useAppContext()"
       ],
       "hookSignature": "",
       "parameters": [],
@@ -711,8 +711,8 @@
       },
       "examples": [],
       "realUsageExamples": [
-        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
-        "const [theme, setTheme] = useAppStorage('app-theme', 'light')"
+        "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
+        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);"
       ],
       "hookSignature": "",
       "parameters": [

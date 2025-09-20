@@ -514,34 +514,44 @@ export default function PagePage({ component, usedComponents }: PagePageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  let paths: any[] = []
+  
   try {
-    const searchPath = path.join(process.cwd(), 'content', 'search.json')
-    const searchData = JSON.parse(fs.readFileSync(searchPath, 'utf-8'))
+    const fs = await import('fs')
+    const path = await import('path')
+    const searchJsonPath = path.join(process.cwd(), 'content', 'search.json')
     
-    const paths = searchData.components
+    const searchData = JSON.parse(fs.readFileSync(searchJsonPath, 'utf-8'))
+    
+    paths = searchData.components
       .filter((comp: any) => comp.type === 'page')
       .map((comp: any) => ({
         params: { slug: comp.displayName.toLowerCase() }
       }))
 
-    return {
-      paths,
-      fallback: false
-    }
   } catch (error) {
-    return {
-      paths: [],
-      fallback: false
-    }
+    console.warn('Could not read components data for static paths:', error)
+    paths = []
+  }
+
+  return {
+    paths,
+    fallback: false
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  let component: any = null
+  let usedComponents: Array<{name: string, type: string, count: number, firstUsage: string}> = []
+  
   try {
-    const searchPath = path.join(process.cwd(), 'content', 'search.json')
-    const searchData = JSON.parse(fs.readFileSync(searchPath, 'utf-8'))
+    const fs = await import('fs')
+    const path = await import('path')
+    const searchJsonPath = path.join(process.cwd(), 'content', 'search.json')
     
-    const component = searchData.components.find(
+    const searchData = JSON.parse(fs.readFileSync(searchJsonPath, 'utf-8'))
+    
+    component = searchData.components.find(
       (comp: any) => comp.displayName.toLowerCase() === params?.slug && comp.type === 'page'
     )
 
@@ -551,49 +561,42 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     }
 
-    // Extract components used by this page
-    let usedComponents: Array<{name: string, type: string, count: number, firstUsage: string}> = []
-    
+    // Try to extract components used by this page, but fail gracefully
     try {
-      // Try to read the actual page file content
-      if (component.filePath) {
-        let pageContent = ''
-        
-        // Try different possible file paths - more comprehensive approach
-        const possiblePaths = [
-          // Most likely paths first
-          path.resolve(process.cwd(), '..', '..', component.filePath), // From built site back to project root
-          path.resolve(process.cwd(), '..', component.filePath),
-          path.resolve(process.cwd(), component.filePath),
-          path.resolve(component.filePath),
-          // Alternative paths
-          path.join(process.cwd(), '..', '..', component.filePath),
-          path.join(process.cwd(), '..', component.filePath),
-          path.join(process.cwd(), component.filePath),
-          component.filePath
-        ]
-        
-       
-        for (const filePath of possiblePaths) {
-          try {
-            if (fs.existsSync(filePath)) {
-              pageContent = fs.readFileSync(filePath, 'utf-8')
-              break
+      // Check if component usage data is already pre-generated (preferred)
+      if (component.usedComponents && Array.isArray(component.usedComponents)) {
+        usedComponents = component.usedComponents
+      } else {
+        // Fallback: Try to read the actual page file content (development only)
+        // This will fail gracefully on Vercel/production
+        if (component.filePath) {
+          let pageContent = ''
+          
+          // Only try a few likely paths to avoid excessive file system operations
+          const possiblePaths = [
+            path.resolve(process.cwd(), '..', component.filePath),
+            path.resolve(process.cwd(), '..', '..', component.filePath)
+          ]
+          
+          for (const filePath of possiblePaths) {
+            try {
+              if (fs.existsSync(filePath)) {
+                pageContent = fs.readFileSync(filePath, 'utf-8')
+                break
+              }
+            } catch (e) {
+              // Continue silently
             }
-          } catch (e) {
-            continue
           }
-        }
-        
-        if (pageContent) {
-          usedComponents = extractUsedComponents(pageContent, searchData.components)
-        } else {
-          console.warn('Could not find page file at any path for:', component.filePath)
-          console.warn('Available search data has', searchData.components?.length || 0, 'total components')
+          
+          if (pageContent) {
+            usedComponents = extractUsedComponents(pageContent, searchData.components)
+          }
         }
       }
     } catch (error) {
-      console.warn('Could not extract used components:', error)
+      // Fail silently - this is expected on Vercel where source files aren't available
+      console.warn('Could not extract used components (this is normal on Vercel):', error instanceof Error ? error.message : String(error))
     }
 
     return {
@@ -603,6 +606,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     }
   } catch (error) {
+    console.warn('Could not read components data for page:', error)
     return {
       notFound: true
     }
