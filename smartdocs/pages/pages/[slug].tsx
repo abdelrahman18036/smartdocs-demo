@@ -724,7 +724,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         }
       }
     }
-    }
 
     // If we have a component, extract used components
     if (component) {
