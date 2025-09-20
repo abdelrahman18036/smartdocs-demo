@@ -41,40 +41,40 @@
       "realUsageExamples": [],
       "usedComponents": [
         {
-          "name": "useNavigate",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useParams, useNavigate } from 'react-router-dom'"
-        },
-        {
-          "name": "useAppContext",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppContext } from '../context/AppContext'"
-        },
-        {
-          "name": "CardWidget",
+          "name": "Badge",
           "type": "component",
-          "count": 5,
-          "firstUsage": "-y-6\">\r\n            <CardWidget\r\n              title=\"Page Information"
+          "count": 2,
+          "firstUsage": "<Badge variant=\"primary\" size=\"large\">ID: {id}</Ba"
         },
         {
           "name": "Button",
           "type": "component",
           "count": 4,
-          "firstUsage": "/Button>\r\n          <Button variant=\"primary\" onClick={() => handleNav"
+          "firstUsage": "<Button variant=\"secondary\" onClick={handleGoBack}"
+        },
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 5,
+          "firstUsage": "<CardWidget\r\n                title=\"Article Detail"
         },
         {
           "name": "ButtonComponent",
           "type": "component",
           "count": 2,
-          "firstUsage": "import { ButtonComponent } from '../component/ButtonComponent'"
+          "firstUsage": "<ButtonComponent \r\n                    variant=\"pr"
         },
         {
-          "name": "Badge",
-          "type": "component",
+          "name": "useNavigate",
+          "type": "hook",
           "count": 2,
-          "firstUsage": "mb-6\">\r\n            <Badge variant=\"primary\" size=\"large\">ID: {id}</Ba"
+          "firstUsage": "g }>()\r\n  const navigate = useNavigate()\r\n  const"
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "gate()\r\n  const { state, addNotification } = useAp"
         }
       ]
     },
@@ -359,40 +359,40 @@
       "realUsageExamples": [],
       "usedComponents": [
         {
-          "name": "useNavigate",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useParams, useNavigate } from 'react-router-dom'"
-        },
-        {
-          "name": "useAppContext",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppContext } from '../context/AppContext'"
-        },
-        {
-          "name": "CardWidget",
+          "name": "Badge",
           "type": "component",
-          "count": 5,
-          "firstUsage": "-y-6\">\r\n            <CardWidget\r\n              title=\"Page Information"
+          "count": 2,
+          "firstUsage": "<Badge variant=\"primary\" size=\"large\">ID: {id}</Ba"
         },
         {
           "name": "Button",
           "type": "component",
           "count": 4,
-          "firstUsage": "/Button>\r\n          <Button variant=\"primary\" onClick={() => handleNav"
+          "firstUsage": "<Button variant=\"secondary\" onClick={handleGoBack}"
+        },
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 5,
+          "firstUsage": "<CardWidget\r\n                title=\"Article Detail"
         },
         {
           "name": "ButtonComponent",
           "type": "component",
           "count": 2,
-          "firstUsage": "import { ButtonComponent } from '../component/ButtonComponent'"
+          "firstUsage": "<ButtonComponent \r\n                    variant=\"pr"
         },
         {
-          "name": "Badge",
-          "type": "component",
+          "name": "useNavigate",
+          "type": "hook",
           "count": 2,
-          "firstUsage": "mb-6\">\r\n            <Badge variant=\"primary\" size=\"large\">ID: {id}</Ba"
+          "firstUsage": "g }>()\r\n  const navigate = useNavigate()\r\n  const"
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "gate()\r\n  const { state, addNotification } = useAp"
         }
       ]
     },
@@ -512,8 +512,8 @@
       "examples": [],
       "realUsageExamples": [
         "const { state, addNotification } = useAppContext()",
-        "const { state, toggleTheme, logout, addNotification } = useAppContext()",
-        "const { state, removeNotification } = useAppContext()"
+        "const { state, toggleTheme, addNotification, setUser } = useAppContext()",
+        "const { state, toggleTheme, logout, addNotification } = useAppContext()"
       ],
       "hookSignature": "",
       "parameters": [],
@@ -650,6 +650,280 @@
       "hookCategory": "custom"
     },
     {
+      "displayName": "AboutPage",
+      "filePath": "src\\pages\\AboutPage.tsx",
+      "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information."
+      },
+      "examples": [],
+      "realUsageExamples": [],
+      "usedComponents": [
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 6,
+          "firstUsage": "<CardWidget\r\n          title=\"Project Statistics\""
+        },
+        {
+          "name": "Badge",
+          "type": "component",
+          "count": 2,
+          "firstUsage": "<Badge key={skillIndex} variant=\"secondary\" size=\""
+        },
+        {
+          "name": "Button",
+          "type": "component",
+          "count": 3,
+          "firstUsage": "<Button \r\n                    variant=\"secondary\""
+        },
+        {
+          "name": "ButtonComponent",
+          "type": "component",
+          "count": 3,
+          "firstUsage": "<ButtonComponent variant=\"primary\" size=\"small\" cl"
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "ge() {\r\n  const { state, addNotification } = useAp"
+        }
+      ]
+    },
+    {
+      "displayName": "ContactPage",
+      "filePath": "src\\pages\\ContactPage.tsx",
+      "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme."
+      },
+      "examples": [],
+      "realUsageExamples": [],
+      "usedComponents": [
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 3,
+          "firstUsage": "<CardWidget\r\n              title=\"Send us a Messag"
+        },
+        {
+          "name": "InputField",
+          "type": "component",
+          "count": 4,
+          "firstUsage": "<InputField\r\n                    label=\"Full Name\""
+        },
+        {
+          "name": "ButtonComponent",
+          "type": "component",
+          "count": 1,
+          "firstUsage": "<ButtonComponent\r\n                    variant=\"pri"
+        },
+        {
+          "name": "Button",
+          "type": "component",
+          "count": 2,
+          "firstUsage": "<Button\r\n                    variant=\"secondary\""
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "ge() {\r\n  const { state, addNotification } = useAp"
+        },
+        {
+          "name": "useState",
+          "type": "hook",
+          "count": 4,
+          "firstUsage": "text()\r\n  const [formData, setFormData] = useState"
+        },
+        {
+          "name": "useFormValidator",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "rules\r\n  const { validateField, errors, isValid,"
+        }
+      ]
+    },
+    {
+      "displayName": "DynamicPage",
+      "filePath": "src\\pages\\DynamicPage.tsx",
+      "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities."
+      },
+      "examples": [],
+      "realUsageExamples": [],
+      "usedComponents": [
+        {
+          "name": "Badge",
+          "type": "component",
+          "count": 2,
+          "firstUsage": "<Badge variant=\"primary\" size=\"large\">ID: {id}</Ba"
+        },
+        {
+          "name": "Button",
+          "type": "component",
+          "count": 4,
+          "firstUsage": "<Button variant=\"secondary\" onClick={handleGoBack}"
+        },
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 5,
+          "firstUsage": "<CardWidget\r\n                title=\"Article Detail"
+        },
+        {
+          "name": "ButtonComponent",
+          "type": "component",
+          "count": 2,
+          "firstUsage": "<ButtonComponent \r\n                    variant=\"pr"
+        },
+        {
+          "name": "useNavigate",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "g }>()\r\n  const navigate = useNavigate()\r\n  const"
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "gate()\r\n  const { state, addNotification } = useAp"
+        }
+      ]
+    },
+    {
+      "displayName": "ExamplePage",
+      "filePath": "src\\pages\\ExamplePage.tsx",
+      "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples."
+      },
+      "examples": [],
+      "realUsageExamples": [],
+      "usedComponents": [
+        {
+          "name": "Button",
+          "type": "component",
+          "count": 6,
+          "firstUsage": "<Button variant=\"primary\" onClick={() => window.lo"
+        },
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 4,
+          "firstUsage": "<CardWidget \r\n          title=\"Form Validation Dem"
+        },
+        {
+          "name": "ButtonComponent",
+          "type": "component",
+          "count": 6,
+          "firstUsage": "<ButtonComponent variant=\"danger\" onClick={() => s"
+        },
+        {
+          "name": "InputField",
+          "type": "component",
+          "count": 2,
+          "firstUsage": "<InputField\r\n              label=\"Email\""
+        },
+        {
+          "name": "DialogModal",
+          "type": "component",
+          "count": 1,
+          "firstUsage": "<DialogModal \r\n          isOpen={showModal}"
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "howcasing various UI components,\r\n * hooks functio"
+        },
+        {
+          "name": "useState",
+          "type": "hook",
+          "count": 6,
+          "firstUsage": "text()\r\n  const [showModal, setShowModal] = useSta"
+        },
+        {
+          "name": "useAppStorage",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "false)\r\n  const [theme, setTheme] = useAppStorage("
+        },
+        {
+          "name": "useApiCall",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "l hook\r\n  const { data: userData, loading, error }"
+        },
+        {
+          "name": "useFormValidator",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "r hook\r\n  const { validateField, isValid } = useFo"
+        }
+      ]
+    },
+    {
+      "displayName": "HomePage",
+      "filePath": "src\\pages\\HomePage.tsx",
+      "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management."
+      },
+      "examples": [],
+      "realUsageExamples": [],
+      "usedComponents": [
+        {
+          "name": "ButtonComponent",
+          "type": "component",
+          "count": 4,
+          "firstUsage": "<ButtonComponent variant=\"primary\" size=\"large\" on"
+        },
+        {
+          "name": "Button",
+          "type": "component",
+          "count": 11,
+          "firstUsage": "<Button variant=\"secondary\" size=\"large\" onClick={"
+        },
+        {
+          "name": "CardWidget",
+          "type": "component",
+          "count": 5,
+          "firstUsage": "<CardWidget\r\n            title=\"Component Library\""
+        },
+        {
+          "name": "DialogModal",
+          "type": "component",
+          "count": 1,
+          "firstUsage": "<DialogModal\r\n          isOpen={showWelcomeModal}"
+        },
+        {
+          "name": "useAppContext",
+          "type": "hook",
+          "count": 2,
+          "firstUsage": "howcasing various components\r\n * and demonstrating"
+        },
+        {
+          "name": "useState",
+          "type": "hook",
+          "count": 4,
+          "firstUsage": "text()\r\n  const [showWelcomeModal, setShowWelcomeM"
+        }
+      ]
+    },
+    {
       "displayName": "useApiCall",
       "filePath": "src\\services\\useApiCall.ts",
       "description": "Custom hook for making API calls with loading and error states",
@@ -660,8 +934,8 @@
       },
       "examples": [],
       "realUsageExamples": [
-        "const { data: userData, loading, error } = useApiCall('/api/user-profile')",
-        "const { data: buttonData } = useApiCall('/api/button-config');"
+        "const { data: buttonData } = useApiCall('/api/button-config');",
+        "const { data: userData, loading, error } = useApiCall('/api/user-profile')"
       ],
       "hookSignature": "",
       "parameters": [
@@ -727,8 +1001,8 @@
       },
       "examples": [],
       "realUsageExamples": [
-        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
-        "const [theme, setTheme] = useAppStorage('app-theme', 'light')"
+        "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
+        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);"
       ],
       "hookSignature": "",
       "parameters": [
@@ -872,366 +1146,12 @@
       "hookCategory": "custom"
     },
     {
-      "displayName": "AboutPage",
-      "filePath": "src\\pages\\AboutPage.tsx",
-      "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information."
-      },
-      "examples": [],
-      "realUsageExamples": [],
-      "usedComponents": [
-        {
-          "name": "useAppContext",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppContext } from '../context/AppContext'"
-        },
-        {
-          "name": "CardWidget",
-          "type": "component",
-          "count": 6,
-          "firstUsage": "=> (\r\n              <CardWidget\r\n                key={index}"
-        },
-        {
-          "name": "Button",
-          "type": "component",
-          "count": 3,
-          "firstUsage": "ent>\r\n              <Button \r\n                variant=\"success\""
-        },
-        {
-          "name": "ButtonComponent",
-          "type": "component",
-          "count": 3,
-          "firstUsage": "-4\">\r\n              <ButtonComponent \r\n                variant=\"primar"
-        },
-        {
-          "name": "Badge",
-          "type": "component",
-          "count": 2,
-          "firstUsage": "import { Badge } from '../component/Badge'"
-        }
-      ]
-    },
-    {
-      "displayName": "ContactPage",
-      "filePath": "src\\pages\\ContactPage.tsx",
-      "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme."
-      },
-      "examples": [],
-      "realUsageExamples": [],
-      "usedComponents": [
-        {
-          "name": "useState",
-          "type": "hook",
-          "count": 4,
-          "firstUsage": "text()\r\n  const [formData, setFormData] = useState"
-        },
-        {
-          "name": "useAppContext",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppContext } from '../context/AppContext'"
-        },
-        {
-          "name": "CardWidget",
-          "type": "component",
-          "count": 3,
-          "firstUsage": "an-2\">\r\n            <CardWidget\r\n              title=\"Send us a Messag"
-        },
-        {
-          "name": "InputField",
-          "type": "component",
-          "count": 4,
-          "firstUsage": "import { InputField } from '../component/InputField'"
-        },
-        {
-          "name": "Button",
-          "type": "component",
-          "count": 2,
-          "firstUsage": "er\">\r\n              <Button\r\n                variant=\"success\""
-        },
-        {
-          "name": "ButtonComponent",
-          "type": "component",
-          "count": 1,
-          "firstUsage": "import { ButtonComponent } from '../component/ButtonComponent'"
-        },
-        {
-          "name": "useFormValidator",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useFormValidator } from '../utils/useFormValidator'"
-        }
-      ]
-    },
-    {
-      "displayName": "DynamicPage",
-      "filePath": "src\\pages\\DynamicPage.tsx",
-      "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities."
-      },
-      "examples": [],
-      "realUsageExamples": [],
-      "usedComponents": [
-        {
-          "name": "useNavigate",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useParams, useNavigate } from 'react-router-dom'"
-        },
-        {
-          "name": "useAppContext",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppContext } from '../context/AppContext'"
-        },
-        {
-          "name": "CardWidget",
-          "type": "component",
-          "count": 5,
-          "firstUsage": "-y-6\">\r\n            <CardWidget\r\n              title=\"Page Information"
-        },
-        {
-          "name": "Button",
-          "type": "component",
-          "count": 4,
-          "firstUsage": "/Button>\r\n          <Button variant=\"primary\" onClick={() => handleNav"
-        },
-        {
-          "name": "ButtonComponent",
-          "type": "component",
-          "count": 2,
-          "firstUsage": "import { ButtonComponent } from '../component/ButtonComponent'"
-        },
-        {
-          "name": "Badge",
-          "type": "component",
-          "count": 2,
-          "firstUsage": "mb-6\">\r\n            <Badge variant=\"primary\" size=\"large\">ID: {id}</Ba"
-        }
-      ]
-    },
-    {
-      "displayName": "ExamplePage",
-      "filePath": "src\\pages\\ExamplePage.tsx",
-      "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples."
-      },
-      "examples": [],
-      "realUsageExamples": [],
-      "usedComponents": [
-        {
-          "name": "useState",
-          "type": "hook",
-          "count": 6,
-          "firstUsage": "text()\r\n  const [showModal, setShowModal] = useSta"
-        },
-        {
-          "name": "useAppContext",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppContext } from '../context/AppContext'"
-        },
-        {
-          "name": "ButtonComponent",
-          "type": "component",
-          "count": 6,
-          "firstUsage": "\">\r\n                <ButtonComponent variant=\"danger\" onClick={() => s"
-        },
-        {
-          "name": "DialogModal",
-          "type": "component",
-          "count": 1,
-          "firstUsage": "dWidget>\r\n\r\n        <DialogModal \r\n          isOpen={showModal}"
-        },
-        {
-          "name": "CardWidget",
-          "type": "component",
-          "count": 4,
-          "firstUsage": "dWidget>\r\n\r\n        <CardWidget \r\n          title=\"Documentation Featu"
-        },
-        {
-          "name": "InputField",
-          "type": "component",
-          "count": 2,
-          "firstUsage": "-y-4\">\r\n            <InputField\r\n              label=\"Name\""
-        },
-        {
-          "name": "Button",
-          "type": "component",
-          "count": 6,
-          "firstUsage": "-x-4\">\r\n            <Button variant=\"primary\" onClick={() => window.lo"
-        },
-        {
-          "name": "useAppStorage",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppStorage } from '../utils/useAppStorage'"
-        },
-        {
-          "name": "useApiCall",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useApiCall } from '../services/useApiCall'"
-        },
-        {
-          "name": "useFormValidator",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useFormValidator } from '../utils/useFormValidator'"
-        }
-      ]
-    },
-    {
-      "displayName": "HomePage",
-      "filePath": "src\\pages\\HomePage.tsx",
-      "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management."
-      },
-      "examples": [],
-      "realUsageExamples": [],
-      "usedComponents": [
-        {
-          "name": "useState",
-          "type": "hook",
-          "count": 4,
-          "firstUsage": "text()\r\n  const [showWelcomeModal, setShowWelcomeM"
-        },
-        {
-          "name": "useAppContext",
-          "type": "hook",
-          "count": 2,
-          "firstUsage": "import { useAppContext } from '../context/AppContext'"
-        },
-        {
-          "name": "ButtonComponent",
-          "type": "component",
-          "count": 4,
-          "firstUsage": "-x-4\">\r\n            <ButtonComponent variant=\"primary\" size=\"large\" on"
-        },
-        {
-          "name": "CardWidget",
-          "type": "component",
-          "count": 5,
-          "firstUsage": "mb-16\">\r\n          <CardWidget\r\n            title=\"Component Library\""
-        },
-        {
-          "name": "Button",
-          "type": "component",
-          "count": 11,
-          "firstUsage": "onent>\r\n            <Button variant=\"secondary\" size=\"large\" onClick={"
-        },
-        {
-          "name": "DialogModal",
-          "type": "component",
-          "count": 1,
-          "firstUsage": "import { DialogModal } from '../component/DialogModal'"
-        }
-      ]
-    },
-    {
       "displayName": "useState",
       "filePath": "React Built-in",
       "description": "Returns a stateful value and a function to update it",
       "type": "hook",
       "props": [],
       "hookUsages": [
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 32,
-          "code": "const [data, setData] = useState<T | null>(null);",
-          "context": "useApiCall",
-          "destructuring": [
-            "data",
-            "setData"
-          ],
-          "parameters": [
-            "{NullLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{NullLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 33,
-          "code": "const [loading, setLoading] = useState(true);",
-          "context": "useApiCall",
-          "destructuring": [
-            "loading",
-            "setLoading"
-          ],
-          "parameters": [
-            "{BooleanLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{BooleanLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 34,
-          "code": "const [error, setError] = useState<Error | null>(null);",
-          "context": "useApiCall",
-          "destructuring": [
-            "error",
-            "setError"
-          ],
-          "parameters": [
-            "{NullLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{NullLiteral}"
-          }
-        },
-        {
-          "file": "src\\utils\\useAppStorage.ts",
-          "line": 21,
-          "code": "const [storedValue, setStoredValue] = useState<T>(() => {",
-          "context": "useAppStorage",
-          "destructuring": [
-            "storedValue",
-            "setStoredValue"
-          ],
-          "parameters": [
-            "() => {...}"
-          ],
-          "defaults": {
-            "callback": "function"
-          }
-        },
-        {
-          "file": "src\\utils\\useFormValidator.ts",
-          "line": 18,
-          "code": "const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});",
-          "context": "useFormValidator",
-          "destructuring": [
-            "errors",
-            "setErrors"
-          ],
-          "parameters": [
-            "{}"
-          ],
-          "defaults": {
-            "initialState": "{}"
-          }
-        },
         {
           "file": "src\\pages\\ContactPage.tsx",
           "line": 17,
@@ -1347,6 +1267,86 @@
           ],
           "defaults": {
             "initialState": "{NumericLiteral}"
+          }
+        },
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 32,
+          "code": "const [data, setData] = useState<T | null>(null);",
+          "context": "useApiCall",
+          "destructuring": [
+            "data",
+            "setData"
+          ],
+          "parameters": [
+            "{NullLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{NullLiteral}"
+          }
+        },
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 33,
+          "code": "const [loading, setLoading] = useState(true);",
+          "context": "useApiCall",
+          "destructuring": [
+            "loading",
+            "setLoading"
+          ],
+          "parameters": [
+            "{BooleanLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{BooleanLiteral}"
+          }
+        },
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 34,
+          "code": "const [error, setError] = useState<Error | null>(null);",
+          "context": "useApiCall",
+          "destructuring": [
+            "error",
+            "setError"
+          ],
+          "parameters": [
+            "{NullLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{NullLiteral}"
+          }
+        },
+        {
+          "file": "src\\utils\\useAppStorage.ts",
+          "line": 21,
+          "code": "const [storedValue, setStoredValue] = useState<T>(() => {",
+          "context": "useAppStorage",
+          "destructuring": [
+            "storedValue",
+            "setStoredValue"
+          ],
+          "parameters": [
+            "() => {...}"
+          ],
+          "defaults": {
+            "callback": "function"
+          }
+        },
+        {
+          "file": "src\\utils\\useFormValidator.ts",
+          "line": 18,
+          "code": "const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});",
+          "context": "useFormValidator",
+          "destructuring": [
+            "errors",
+            "setErrors"
+          ],
+          "parameters": [
+            "{}"
+          ],
+          "defaults": {
+            "initialState": "{}"
           }
         }
       ],

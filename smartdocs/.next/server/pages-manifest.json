@@ -1,1 +1,9 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/api/components":"pages/api/components.js","/_document":"pages/_document.js","/api/override-type":"pages/api/override-type.js","/api/packages":"pages/api/packages.js","/":"pages/index.js","/packages/dependencies":"pages/packages/dependencies.js","/hooks/[slug]":"pages/hooks/[slug].js","/components/[slug]":"pages/components/[slug].js","/packages/dev-dependencies":"pages/packages/dev-dependencies.js","/sitemap":"pages/sitemap.js","/pages/[slug]":"pages/pages/[slug].js","/navigations":"pages/navigations.js","/404":"pages/404.html"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/api/packages": "pages/api/packages.js",
+  "/api/components": "pages/api/components.js",
+  "/pages/[slug]": "pages/pages/[slug].js"
+}

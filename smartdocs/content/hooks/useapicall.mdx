@@ -73,13 +73,13 @@ const { data: userData, loading, error } = useApiCall('/api/user-profile')
 ### Usage 1
 
 ```typescript
-const { data: userData, loading, error } = useApiCall('/api/user-profile')
+const { data: buttonData } = useApiCall('/api/button-config');
 ```
 
 ### Usage 2
 
 ```typescript
-const { data: buttonData } = useApiCall('/api/button-config');
+const { data: userData, loading, error } = useApiCall('/api/user-profile')
 ```
 
 ## Source
