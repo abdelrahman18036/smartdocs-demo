@@ -436,8 +436,8 @@
       "examples": [],
       "realUsageExamples": [
         "const { state, addNotification } = useAppContext()",
-        "const { state, toggleTheme, addNotification, setUser } = useAppContext()",
-        "const { state, toggleTheme, logout, addNotification } = useAppContext()"
+        "const { state, toggleTheme, logout, addNotification } = useAppContext()",
+        "const { state, removeNotification } = useAppContext()"
       ],
       "hookSignature": "",
       "parameters": [],
@@ -574,66 +574,6 @@
       "hookCategory": "custom"
     },
     {
-      "displayName": "AboutPage",
-      "filePath": "src\\pages\\AboutPage.tsx",
-      "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information."
-      },
-      "examples": [],
-      "realUsageExamples": []
-    },
-    {
-      "displayName": "ContactPage",
-      "filePath": "src\\pages\\ContactPage.tsx",
-      "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme."
-      },
-      "examples": [],
-      "realUsageExamples": []
-    },
-    {
-      "displayName": "DynamicPage",
-      "filePath": "src\\pages\\DynamicPage.tsx",
-      "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities."
-      },
-      "examples": [],
-      "realUsageExamples": []
-    },
-    {
-      "displayName": "ExamplePage",
-      "filePath": "src\\pages\\ExamplePage.tsx",
-      "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples."
-      },
-      "examples": [],
-      "realUsageExamples": []
-    },
-    {
-      "displayName": "HomePage",
-      "filePath": "src\\pages\\HomePage.tsx",
-      "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management.",
-      "type": "page",
-      "props": [],
-      "jsdoc": {
-        "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management."
-      },
-      "examples": [],
-      "realUsageExamples": []
-    },
-    {
       "displayName": "useApiCall",
       "filePath": "src\\services\\useApiCall.ts",
       "description": "Custom hook for making API calls with loading and error states",
@@ -701,6 +641,66 @@
       "hookCategory": "custom"
     },
     {
+      "displayName": "AboutPage",
+      "filePath": "src\\pages\\AboutPage.tsx",
+      "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "About Page Component\n\nDisplays information about the SmartDocs Demo application,\ntechnology stack, features, and team information."
+      },
+      "examples": [],
+      "realUsageExamples": []
+    },
+    {
+      "displayName": "ContactPage",
+      "filePath": "src\\pages\\ContactPage.tsx",
+      "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Contact Page Component\n\nA contact form page demonstrating form validation, input handling,\nand integration with the global context for notifications and theme."
+      },
+      "examples": [],
+      "realUsageExamples": []
+    },
+    {
+      "displayName": "DynamicPage",
+      "filePath": "src\\pages\\DynamicPage.tsx",
+      "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Dynamic Page Component\n\nA dynamic page that displays content based on the ID parameter in the URL.\nDemonstrates React Router's dynamic routing capabilities."
+      },
+      "examples": [],
+      "realUsageExamples": []
+    },
+    {
+      "displayName": "ExamplePage",
+      "filePath": "src\\pages\\ExamplePage.tsx",
+      "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Example Page Component\n\nThis page contains the original demo content showcasing various UI components,\nhooks functionality, and form validation examples."
+      },
+      "examples": [],
+      "realUsageExamples": []
+    },
+    {
+      "displayName": "HomePage",
+      "filePath": "src\\pages\\HomePage.tsx",
+      "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management.",
+      "type": "page",
+      "props": [],
+      "jsdoc": {
+        "description": "Home Page Component\n\nThe main landing page of the application showcasing various components\nand demonstrating the use of global context for theme and state management."
+      },
+      "examples": [],
+      "realUsageExamples": []
+    },
+    {
       "displayName": "useAppStorage",
       "filePath": "src\\utils\\useAppStorage.ts",
       "description": "Custom hook for managing application storage state with automatic synchronization",
@@ -711,8 +711,8 @@
       },
       "examples": [],
       "realUsageExamples": [
-        "const [theme, setTheme] = useAppStorage('app-theme', 'light')",
-        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);"
+        "const [clickCount, setClickCount] = useAppStorage('button-clicks', 0);",
+        "const [theme, setTheme] = useAppStorage('app-theme', 'light')"
       ],
       "hookSignature": "",
       "parameters": [
@@ -780,9 +780,9 @@
       },
       "examples": [],
       "realUsageExamples": [
-        "const { validateField, errors } = useFormValidator({\r\n    input: (val: string) => {\r\n      if (required && !val.trim()) return 'This field is required';\r\n      if (type === 'email' && val && !/\\S+@\\S+\\.\\S+/.test(val)) return 'Invalid email format';\r\n      return null;\r\n    }\r\n  });",
         "const { validateField, errors, isValid, validateAll } = useFormValidator({\r\n    name: (value: string) => {\r\n      if (!value.trim()) return 'Name is required'\r\n      if (value.length < 2) return 'Name must be at least 2 characters'\r\n      return null\r\n    },\r\n    email: (value: string) => {\r\n      if (!value.trim()) return 'Email is required'\r\n      if (!/\\S+@\\S+\\.\\S+/.test(value)) return 'Please enter a valid email address'\r\n      return null\r\n    },\r\n    company: (value: string) => {\r\n      if (value && value.length < 2) return 'Company name must be at least 2 characters'\r\n      return null\r\n    },\r\n    subject: (value: string) => {\r\n      if (!value.trim()) return 'Subject is required'\r\n      if (value.length < 5) return 'Subject must be at least 5 characters'\r\n      return null\r\n    },\r\n    message: (value: string) => {\r\n      if (!value.trim()) return 'Message is required'\r\n      if (value.length < 10) return 'Message must be at least 10 characters'\r\n      if (value.length > 1000) return 'Message must be less than 1000 characters'\r\n      return null\r\n    }\r\n  })",
-        "const { validateField, isValid } = useFormValidator({\r\n    email: (value: string) => /\\S+@\\S+\\.\\S+/.test(value) ? null : 'Invalid email',\r\n    name: (value: string) => value.length >= 2 ? null : 'Name too short'\r\n  })"
+        "const { validateField, isValid } = useFormValidator({\r\n    email: (value: string) => /\\S+@\\S+\\.\\S+/.test(value) ? null : 'Invalid email',\r\n    name: (value: string) => value.length >= 2 ? null : 'Name too short'\r\n  })",
+        "const { validateField, errors } = useFormValidator({\r\n    input: (val: string) => {\r\n      if (required && !val.trim()) return 'This field is required';\r\n      if (type === 'email' && val && !/\\S+@\\S+\\.\\S+/.test(val)) return 'Invalid email format';\r\n      return null;\r\n    }\r\n  });"
       ],
       "hookSignature": "",
       "parameters": [
@@ -862,6 +862,54 @@
       "type": "hook",
       "props": [],
       "hookUsages": [
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 32,
+          "code": "const [data, setData] = useState<T | null>(null);",
+          "context": "useApiCall",
+          "destructuring": [
+            "data",
+            "setData"
+          ],
+          "parameters": [
+            "{NullLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{NullLiteral}"
+          }
+        },
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 33,
+          "code": "const [loading, setLoading] = useState(true);",
+          "context": "useApiCall",
+          "destructuring": [
+            "loading",
+            "setLoading"
+          ],
+          "parameters": [
+            "{BooleanLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{BooleanLiteral}"
+          }
+        },
+        {
+          "file": "src\\services\\useApiCall.ts",
+          "line": 34,
+          "code": "const [error, setError] = useState<Error | null>(null);",
+          "context": "useApiCall",
+          "destructuring": [
+            "error",
+            "setError"
+          ],
+          "parameters": [
+            "{NullLiteral}"
+          ],
+          "defaults": {
+            "initialState": "{NullLiteral}"
+          }
+        },
         {
           "file": "src\\pages\\ContactPage.tsx",
           "line": 17,
@@ -977,54 +1025,6 @@
           ],
           "defaults": {
             "initialState": "{NumericLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 32,
-          "code": "const [data, setData] = useState<T | null>(null);",
-          "context": "useApiCall",
-          "destructuring": [
-            "data",
-            "setData"
-          ],
-          "parameters": [
-            "{NullLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{NullLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 33,
-          "code": "const [loading, setLoading] = useState(true);",
-          "context": "useApiCall",
-          "destructuring": [
-            "loading",
-            "setLoading"
-          ],
-          "parameters": [
-            "{BooleanLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{BooleanLiteral}"
-          }
-        },
-        {
-          "file": "src\\services\\useApiCall.ts",
-          "line": 34,
-          "code": "const [error, setError] = useState<Error | null>(null);",
-          "context": "useApiCall",
-          "destructuring": [
-            "error",
-            "setError"
-          ],
-          "parameters": [
-            "{NullLiteral}"
-          ],
-          "defaults": {
-            "initialState": "{NullLiteral}"
           }
         },
         {

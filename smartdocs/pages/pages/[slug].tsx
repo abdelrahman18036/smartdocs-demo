@@ -561,14 +561,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       }
     }
 
-    // Try to extract components used by this page, but fail gracefully
-    try {
-      // Check if component usage data is already pre-generated (preferred)
-      if (component.usedComponents && Array.isArray(component.usedComponents)) {
-        usedComponents = component.usedComponents
-      } else {
-        // Fallback: Try to read the actual page file content (development only)
-        // This will fail gracefully on Vercel/production
+    // Use pre-generated component usage data if available (preferred for production)
+    if (component.usedComponents && Array.isArray(component.usedComponents)) {
+      usedComponents = component.usedComponents
+      console.log(`✓ Using pre-generated component usage data for ${component.displayName} (${usedComponents.length} components)`)
+    } else {
+      // Fallback: Try to extract at runtime (development only)
+      try {
         if (component.filePath) {
           let pageContent = ''
           
@@ -591,12 +590,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           
           if (pageContent) {
             usedComponents = extractUsedComponents(pageContent, searchData.components)
+            console.log(`✓ Extracted component usage at runtime for ${component.displayName} (${usedComponents.length} components)`)
+          } else {
+            console.warn(`⚠️  No component usage data available for ${component.displayName} (source file not found)`)
           }
         }
+      } catch (error) {
+        // Fail silently - this is expected on Vercel where source files aren't available
+        console.warn('Could not extract used components (this is normal on Vercel):', error instanceof Error ? error.message : String(error))
       }
-    } catch (error) {
-      // Fail silently - this is expected on Vercel where source files aren't available
-      console.warn('Could not extract used components (this is normal on Vercel):', error instanceof Error ? error.message : String(error))
     }
 
     return {
